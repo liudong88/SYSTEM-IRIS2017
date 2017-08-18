@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+#wrapper {
+	width: 750px;
+	height: 1334px;
+	margin: 0 auto 0 auto;
+	outline: 1px solid green;
+	position: relative;
+}
+
+
+footer{
+	width:750px;
+	outline: 1px solid pink;
+	position: absolute;
+	top: 1206px;
+	position: fixed;
+}
+
+footer ul li a {
+	float: left;
+	width: 20%;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	background-color: #00A0E9;
+	outline: 1px solid blue;
+}
