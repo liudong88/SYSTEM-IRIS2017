@@ -4,16 +4,16 @@
 	width: 750px;
 	height: 1334px;
 	margin: 0 auto 0 auto;
-	outline: 1px solid green;
+	outline: 1px solid red;
 	position: relative;
 }
 
-
-footer{
-	width:750px;
-	outline: 1px solid pink;
+footer {
+	width: 750px;
+	outline: 1px solid red;
 	position: absolute;
 	top: 1206px;
+	background-color: #00A0E9;
 	position: fixed;
 }
 
@@ -23,6 +23,4 @@ footer ul li a {
 	text-align: center;
 	display: block;
 	text-decoration: none;
-	background-color: #00A0E9;
-	outline: 1px solid blue;
 }

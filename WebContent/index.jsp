@@ -20,11 +20,16 @@
 		<!-- フッター -->
 		<footer>
 			<ul>
-				<li class="camera_nav"><a href="#"><img src="images/camera_button.png" /></a></li>
-				<li class="collage_nav"><a href="#"><img src="images/collage_button.png" /></a></li>
-				<li class="add_nav"><a href="#"><img src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="#"><img src="images/infomation_button.png" /></a></li>
-				<li class="user_nav"><a href="#"><img src="images/user_button.png" /></a></li>
+				<li class="camera_nav"><a href="#"><img
+						src="images/camera_button.png" /></a></li>
+				<li class="collage_nav"><a href="#"><img
+						src="images/collage_button.png" /></a></li>
+				<li class="add_nav"><a href="#"><img
+						src="images/add_button.png" /></a></li>
+				<li class="information_nav"><a href="#"><img
+						src="images/infomation_button.png" /></a></li>
+				<li class="user_nav"><a href="#"><img
+						src="images/user_button.png" /></a></li>
 			</ul>
 		</footer>
 	</div>
