@@ -7,8 +7,8 @@
 <head>
 <meta charset="utf=8">
 <title>index</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/design.css">
+<link rel="stylesheet" type="text/css" href="./css/reset.css">
+<link rel="stylesheet" type="text/css" href="./css/design.css">
 </head>
 <body>
 	<div id="wrapper">
