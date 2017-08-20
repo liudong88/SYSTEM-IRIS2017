@@ -12,7 +12,10 @@
 </head>
 <body>
 	<div id="wrapper">
-		<header></header>
+		<header>
+			<div class="application_name" ><img src="images/header_logo.png" /></div>
+			<div class="home_button" ><a href="#"><img src="images/home_buttom.png" /></a></div>
+		</header>
 		<section></section>
 		<article>
 			<img src="images/sample_image.png" />

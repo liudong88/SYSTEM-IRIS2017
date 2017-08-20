@@ -8,6 +8,29 @@
 	position: relative;
 }
 
+header {
+	width: 750px;
+	height: 150px;
+	top: 0px;
+	background-color: #00A0E9;
+	position: fixed;
+	outline: 1px solid red;
+	position: relative;
+}
+
+header .application_name {
+	position:absolute;
+	margin-top:11px;
+	left:0px;
+	outline: 1px solid red;
+}
+
+header .home_button {
+	position:absolute;
+	right:0px;
+	outline: 1px solid red;
+}
+
 footer {
 	width: 750px;
 	outline: 1px solid red;
