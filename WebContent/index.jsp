@@ -32,7 +32,7 @@
 			<div class="viewport">
 				<ul class="flipsnap">
 			<!-- 横750px、縦1074pxの画像 -->
-					<li><img src="images/sample_image.png"></li>
+					<li><img src="images/top_page_sample1.png"></li>
 					<li><img src="images/sample_image.png"></li>
 					<li><img src="images/sample_image.png"></li>
 				</ul>
