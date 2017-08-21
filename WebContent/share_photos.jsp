@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="css/reset.css">
+<<<<<<< HEAD
 	<!-- <link rel="stylesheet" href="css/common.css"> -->
 	<link rel="stylesheet" href="css/photos_design.css">
 	<link rel="stylesheet" href="css/test_style.css">
@@ -15,6 +16,10 @@
 	<!-- font-awesome用CSS -->
 	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
+=======
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/photos_design.css">
+>>>>>>> branch 'master' of https://github.com/ShikinamiAsuka/SYSTEM-IRIS2017.git
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/jquery-context-menu.min.js"></script>
 	<script src="js/modal-fix.js"></script>
@@ -102,6 +107,7 @@
 	</script>
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="wrapper-main">
 		<header>
 			<p>test</p>
@@ -253,5 +259,10 @@
 			</ul>
 		</footer> -->
 	</div>
+=======
+	<header>
+
+	</header>
+>>>>>>> branch 'master' of https://github.com/ShikinamiAsuka/SYSTEM-IRIS2017.git
 <body>
 </html>
