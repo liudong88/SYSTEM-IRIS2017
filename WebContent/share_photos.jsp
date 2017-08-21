@@ -4,14 +4,14 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" src="css/common.css">
-	<link rel="stylesheet" src="css/photos_design.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/photos_design.css">
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<title></title>
 </head>
 <body>
-	<heder>
-		
-	</heder>
+	<header>
+
+	</header>
 <body>
 </html>
