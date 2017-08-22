@@ -5,10 +5,3 @@
 	outline: 1px solid red;
 	position: relative;
 }
-
-article img{
-	width:100% ;
-	margin: 0 auto ;
-	text-align: center;
-	outline:red 1px solid;
-}
