@@ -12,7 +12,8 @@ body {
 	width: 100%;
 	max-width: 480px;
 	position: relative;
-	overflow: hidden;
+	overflow: hidden auto;
+	margin: 0 0 60px;
 }
 header {
 	height: 60px;
