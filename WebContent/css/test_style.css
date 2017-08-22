@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#wrapper-main{
+    width: 100%;
+    background: red;
+}
+
+#wrapper-main header{
+    width: 100vw;
+    height: 10vh;
+    background: green;
+}
+
+#wrapper-main footer{
+    width: 100vw;
+    height: 12vh;
+    margin-top: 63vh;
+    position: fixed;
+    bottom: 0;
+    background: blue;
+}
+
+
+
+
+
