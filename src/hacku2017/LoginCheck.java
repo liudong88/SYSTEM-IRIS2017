@@ -14,7 +14,7 @@ public class LoginCheck {
 		String strUserId = "false";
 		if(session == null){
 			try{
-				response.sendRedirect("uploadTest.html");
+				response.sendRedirect("index.jsp");
 			}catch (IOException e) {
 				// TODO: handle exception
 			}
@@ -25,7 +25,7 @@ public class LoginCheck {
 				return strUserId;
 			}else{
 				try{
-					response.sendRedirect("uploadTest.html");
+					response.sendRedirect("index.jsp");
 				}catch (IOException e) {
 					// TODO: handle exception
 				}

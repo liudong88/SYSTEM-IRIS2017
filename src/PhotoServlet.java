@@ -229,8 +229,9 @@ public class PhotoServlet extends HttpServlet {
 			//isJpegFile = true;
 
 			// サムネール画像の作成
-			createThumbnail(path + "/" + filename, path + "/small/" + filename, fileType, 240);
+			createThumbnail(path + "/" + filename, path + "/small/" + filename, fileType, 128);
 		}
+		//System.out.println("保存場所: " + path + "/" + filename);
 /*
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -266,6 +267,10 @@ public class PhotoServlet extends HttpServlet {
 
 			// 縮小画像の高さを計算
 			int height = originHeight * width / originWidth;
+			if(height > 128){
+				height = 128;
+				width = originWidth * height / originHeight;
+			}
 
 			// 縮小画像の作成
 			BufferedImage smallImage = new BufferedImage(width, height, type);
