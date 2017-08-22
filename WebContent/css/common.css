@@ -9,35 +9,19 @@
 
 /* header_css */
 header {
-	width: 750px;
-	height: 130px;
+	height:150px;
+	width:100%;
 	background-color: #00A0E9;
-	position: fixed;
-	outline: 1px solid red;
-}
 
-.application_name {
-	float:left;
-	position: fixed;
-	margin-top:0px;
-	outline: 1px solid red;
-}
-
-.home_button {
-	float:left;
-	position: fixed;
-	margin-left:600px;
-	outline: 1px solid red;
-	clear:both;
 }
 /* header_css_end */
 /*-----------------*/
 /* footer_css */
 footer {
-	width: 750px;
+	width: 100%;
 	outline: 1px solid red;
 	position: absolute;
-	top: 1204px;
+	bottom: 0px;
 	background-color: #00A0E9;
 	position: fixed;
 }
