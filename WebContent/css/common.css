@@ -17,11 +17,11 @@ body {
 header {
 	height: 60px;
 	width: 100%;
-	background-color: #00A0E9;
-
+	max-width: 480px;
 }
 div#logo > img {
 	height: 60px;
+	max-width: 480px;
 }
 /* header_css_end */
 /*-----------------*/
@@ -32,7 +32,7 @@ footer {
 	max-width: 480px;
 	position: fixed;
 	bottom: 0px;
-	background-color: #00A0E9;
+	background-color: #FFF;
 }
 
 footer > ul > li > a {
