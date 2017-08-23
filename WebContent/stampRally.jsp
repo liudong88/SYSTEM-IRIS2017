@@ -9,7 +9,7 @@
 //HashMap<String, String> stampMap = new HashMap<String, String>(); // スポットID, 画像名
 
 ArrayList<String[]> mapSpots = (ArrayList<String[]>)request.getAttribute("MAPSPOTS");
-HashMap<String, String> stampMap = (HashMap<String, String>)request.getAttribute("STAMPMAP");
+HashMap<String, String[]> stampMap = (HashMap<String, String[]>)request.getAttribute("STAMPMAP");
 
 /*--dummy Start--*/
 //stampMap.put("1", "./images/stamp/dummy.png");
