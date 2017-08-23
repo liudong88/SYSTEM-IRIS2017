@@ -6,6 +6,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf=8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>index</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/top_design.css">
@@ -16,27 +17,24 @@
 	<div id="top_page_wrapper">
 		<!-- ヘッダー -->
 		<header>
-			<div class="application_name">
+			<div id="logo">
 				<img src="images/header_logo.png" />
 			</div>
 		</header>
-		<section></section>
-		<article></article>
-		<!-- フッター -->
-		<footer>
-			<ul>
-				<li class="camera_nav"><a href="#"><img
-						src="images/camera_button.png" /></a></li>
-				<li class="collage_nav"><a href="#"><img
-						src="images/collage_button.png" /></a></li>
-				<li class="add_nav"><a href="#"><img
-						src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="#"><img
-						src="images/infomation_button.png" /></a></li>
-				<li class="user_nav"><a href="#"><img
-						src="images/user_button.png" /></a></li>
-			</ul>
-		</footer>
+		<div id="background">
+			<section></section>
+			<article>
+				<div class="login">
+				  <form class="login-container" action = "./LoginCheck"  method = "GET">
+				    <p><input type = "text" name ="username"  placeholder="UserName"></p>
+				    <p><input type="password" name="pass" placeholder="Password"></p>
+				    <p><input type="submit" name ="sb" value="Log in"></p>
+				  </form>
+				</div>
+			</article>
+			<!-- フッター -->
+
+		</div>
 	</div>
 </body>
 </html>

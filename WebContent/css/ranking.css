@@ -30,9 +30,9 @@ img.goodNum {
 }
 /*----*/
 ul#selectSpot > li {
-	background-color: #00A0E9;
+	background-color: #eee;
 	padding: 10px;
-	color: #fff;
+	color: #003249;
 	border-style: solid;
 	border-width: 0 0 2px;
 	border-color: #003249;
@@ -46,7 +46,7 @@ ul#selectSpot > li > ul > li {
 }
 ul#selectSpot > li > ul > li > a {
 	display: block;
-	color: #fff;
+	color: inherit;
 	text-decoration: none;
 	padding: 5px;
 }
