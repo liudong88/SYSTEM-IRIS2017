@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+table {
+	width: 100%;
+}
+th {
+	vertical-align:middle;
+	background-color: #f7f7f7;
+}
+td {
+	background-color: #ffe1ae;
+	padding: 5px;
+}
+thead > tr > th,
+tfoot > tr > th {
+	padding: 5px;
+	font-weight: bold;
+	background-color: #ff6c6c; 
+	color: #f7f7f7;
+	border-style: solid;
+	border-color: #ff6c6c;
+	border-width: 0 0 5px;
+}
+/*----*/
+img {
+	max-width: 100%;
+}
+img.goodNum {
+	height: 24px;
+	position: relative;
+}
+/*----*/
+ul#selectSpot > li {
+	background-color: #00A0E9;
+	padding: 10px;
+	color: #fff;
+	border-style: solid;
+	border-width: 0 0 2px;
+	border-color: #003249;
+}
+ul#selectSpot > li > ul {
+	display: none;
+	padding: 10px 10px 5px 20px;
+}
+ul#selectSpot > li > ul > li {
+	padding: 0 0 5px;
+}
+ul#selectSpot > li > ul > li > a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding: 5px;
+}
