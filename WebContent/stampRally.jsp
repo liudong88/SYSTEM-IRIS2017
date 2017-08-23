@@ -6,10 +6,11 @@
 	import="java.util.HashMap"
 %><%
 ArrayList<String[]> mapSpots = new ArrayList<String[]>(); // request.getAttribute
-HashMap<String, String> stampMap = new HashMap<String, String>(); // スポットID, 画像名
+HashMap<String, String[]> stampMap = new HashMap<String, String[]>(); // スポットID, 画像名
 
 /*--dummy Start--*/
-stampMap.put("1", "./images/stamp/dummy.png");
+String stampMapData[] = {"3", "./images/stamp/Richelieu.png"};
+stampMap.put("1", stampMapData);
 
 String spotInfo_0[] = {"0", "通天閣", "34.652499", "135.506306", "100"};
 String spotInfo_1[] = {"1", "あべのハルカス", "34.645842", "135.513971", "200"};
@@ -45,7 +46,7 @@ for(String[] spot: mapSpots) {
 	mapMarker += "});";
 	//--
 	if(tmpTF) {
-		mapInfoWindow += "var infoWindow"+spot[0]+" = new google.maps.InfoWindow({position: new google.maps.LatLng("+spot[2]+", "+spot[3]+"),content:\"<img src='"+stampMap.get(spot[0])+"'>\" , pixelOffset: new google.maps.Size(0, -50),});";
+		mapInfoWindow += "var infoWindow"+spot[0]+" = new google.maps.InfoWindow({position: new google.maps.LatLng("+spot[2]+", "+spot[3]+"),content:\"<img src='"+stampMap.get(spot[0])[1]+"' style='max-width:128px; max-height:128px;'>\" , pixelOffset: new google.maps.Size(0, -50),});";
 		mapMarkerClick += "marker"+spot[0]+".addListener( \"click\", function ( argument ) {infoWindow"+spot[0]+".open(map);});";
 	}
 	//--
@@ -62,8 +63,15 @@ for(String[] spot: mapSpots) {
 	tmpCnt++;
 	if(tmpCnt == 4) {
 		tmpCnt = 0;
-		stampTable += "<tr>";
+		stampTable += "</tr>";
 	}
+}
+if(tmpCnt != 0) {
+	while(tmpCnt < 4) {
+		stampTable += "<td class=\"noStamp\"></td>";
+		tmpCnt++;
+	}
+	stampTable += "</tr>";
 }
 %><!DOCTYPE html>
 <html lang="ja">
@@ -78,9 +86,9 @@ for(String[] spot: mapSpots) {
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihy_b9BGxc74hMTyBujEAUCTNWQOBUuA&libraries=drawing&lang=ja"></script>
 	<script type="text/javascript">
 		$(function() {
-			$('table#stampList > tbody > tr > td').css({'height': $('table#stampList > tbody > tr > td').width() + 'px'});
+			$('table#stampList > tbody > tr > td').css({height: $('table#stampList > tbody > tr > td').width() + 'px'});
 			// Mapの高さ指定
-			$('#googleMap').css({'height': ($('#googleMap').width() * 0.75) + 'px'});
+			$('#googleMap').css({height: ($('#googleMap').width() * 0.75) + 'px'});
 			// Map中心
 			var mapCenter = new google.maps.LatLng(34.6937378, 135.5021651);
 			// Map生成

@@ -15,6 +15,11 @@ table#stampList > tbody > tr > td {
 	border-color: #ccc;
 	background-image: url('../images/stamp/dummy.png');
 	background-size: contain;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+table#stampList > tbody > tr > td.noStamp {
+	background-image: none;
 }
 table#stampList > tbody > tr > td > img {
 	width: 100%;
