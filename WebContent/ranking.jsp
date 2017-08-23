@@ -28,7 +28,7 @@ String rankingList = "";
 String nowSpot     = "";
 
 for(String[] spot: spots) {
-	spotList += "<li><a href=\"?spot_id="+spot[0]+"\">"+spot[1]+"</a></li>";
+	spotList += "<li><a href=\"?spot_id="+spot[0]+"\">▶ "+spot[1]+"</a></li>";
 }
 for(String[] data: ranking) {
 	String tmpNum[] = data[2].split("");
@@ -65,15 +65,23 @@ if(nowSpotID.isEmpty()) {
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
 	var selectOpenTF = false;
+	var selectSpotHeight_1;
+	var selectSpotHeight_2;
 	function selectOpen() {
 		if(!selectOpenTF) {
-			$('ul#selectSpot > li > ul').css({display: 'block'});
+			$('ul#selectSpot > li').animate({height: selectSpotHeight_2 + 'px'});
 			selectOpenTF = !selectOpenTF;
 		} else {
-			$('ul#selectSpot > li > ul').css({display: 'none'});
+			$('ul#selectSpot > li').animate({height: selectSpotHeight_1 + 'px'});
 			selectOpenTF = !selectOpenTF;
 		}
 	}
+	$(function () {
+		selectSpotHeight_1 = $('ul#selectSpot > li').height();
+		$('ul#selectSpot > li > ul').css({display: 'block'});
+		selectSpotHeight_2 = $('ul#selectSpot > li').height();
+		$('ul#selectSpot > li').css({height: selectSpotHeight_1 + 'px'});
+	});
 	</script>
 </head>
 <body>
@@ -88,7 +96,7 @@ if(nowSpotID.isEmpty()) {
 			<ul id="selectSpot">
 				<li onclick="selectOpen();"><span style="font-size:125%;">▼ スポット別</span> - <%=nowSpot %>
 					<ul>
-						<li><a href="">全スポット</a></li>
+						<li><a href="">▶ 全スポット</a></li>
 						<%=spotList %>
 					</ul>
 				</li>
