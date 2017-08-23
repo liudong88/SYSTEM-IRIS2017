@@ -13,7 +13,7 @@ String stampMapData[] = {"3", "./images/stamp/Richelieu.png"};
 stampMap.put("1", stampMapData);
 
 String spotInfo_0[] = {"0", "通天閣", "34.652499", "135.506306", "100"};
-String spotInfo_1[] = {"1", "あべのハルカス", "34.645842", "135.513971", "200"};
+String spotInfo_1[] = {"1", "あべのハルカスabcdefghijklmnopqrstuvwxyz", "34.645842", "135.513971", "200"};
 String spotInfo_2[] = {"2", "大阪城", "34.684581", "135.526349", "400"};
 String spotInfo_4[] = {"3", "グリコ看板", "34.668896", "135.501155", "50"};
 String spotInfo_3[] = {"4", "スカイビル", "34.70528", "135.490687", "200"};
@@ -46,7 +46,7 @@ for(String[] spot: mapSpots) {
 	mapMarker += "});";
 	//--
 	if(tmpTF) {
-		mapInfoWindow += "var infoWindow"+spot[0]+" = new google.maps.InfoWindow({position: new google.maps.LatLng("+spot[2]+", "+spot[3]+"),content:\"<a href='javascript:getDetails("+stampMap.get(spot[0])[0]+");'><img src='"+stampMap.get(spot[0])[1]+"' style='max-width:128px; max-height:128px;'></a>\" , pixelOffset: new google.maps.Size(0, -50),});";
+		mapInfoWindow += "var infoWindow"+spot[0]+" = new google.maps.InfoWindow({position: new google.maps.LatLng("+spot[2]+", "+spot[3]+"),content:\"<a href='javascript:getDetails("+stampMap.get(spot[0])[0]+");'><img src='"+stampMap.get(spot[0])[1]+"' style='max-width:128px; max-height:128px;'></a><br><p style='width:128px;overflow:hidden;'>"+spot[1]+"</p>\" , pixelOffset: new google.maps.Size(0, -50),});";
 		mapMarkerClick += "marker"+spot[0]+".addListener( \"click\", function ( argument ) {infoWindow"+spot[0]+".open(map);});";
 	}
 	//--
