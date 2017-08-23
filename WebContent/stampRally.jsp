@@ -1,17 +1,20 @@
-<%@ page 
-	language="java" 
+<%@ page
+	language="java"
 	contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="java.util.ArrayList"
 	import="java.util.HashMap"
 %><%
-ArrayList<String[]> mapSpots = new ArrayList<String[]>(); // request.getAttribute
-HashMap<String, String> stampMap = new HashMap<String, String>(); // スポットID, 画像名
+//ArrayList<String[]> mapSpots = new ArrayList<String[]>(); // request.getAttribute
+//HashMap<String, String> stampMap = new HashMap<String, String>(); // スポットID, 画像名
+
+ArrayList<String[]> mapSpots = (ArrayList<String[]>)request.getAttribute("MAPSPOTS");
+HashMap<String, String> stampMap = (HashMap<String, String>)request.getAttribute("STAMPMAP");
 
 /*--dummy Start--*/
-stampMap.put("1", "./images/stamp/dummy.png");
+//stampMap.put("1", "./images/stamp/dummy.png");
 
-String spotInfo_0[] = {"0", "通天閣", "34.652499", "135.506306", "100"};
+/*String spotInfo_0[] = {"0", "通天閣", "34.652499", "135.506306", "100"};
 String spotInfo_1[] = {"1", "あべのハルカス", "34.645842", "135.513971", "200"};
 String spotInfo_2[] = {"2", "大阪城", "34.684581", "135.526349", "400"};
 String spotInfo_4[] = {"3", "グリコ看板", "34.668896", "135.501155", "50"};
@@ -20,7 +23,7 @@ mapSpots.add(spotInfo_0);
 mapSpots.add(spotInfo_1);
 mapSpots.add(spotInfo_2);
 mapSpots.add(spotInfo_3);
-mapSpots.add(spotInfo_4);
+mapSpots.add(spotInfo_4);*/
 /*--dummy End--*/
 
 String mapMarker = "";
@@ -52,7 +55,7 @@ for(String[] spot: mapSpots) {
 	mapMarkerCircle += "var circle"+spot[0]+" = new google.maps.Circle({map: map,center: new google.maps.LatLng("+spot[2]+", "+spot[3]+"),radius: "+spot[4]+",strokeWeight: 0,fillColor: \"#f00\"});";
 	// stampList
 	if(tmpCnt == 0) {
-		stampTable += "<tr>"; 
+		stampTable += "<tr>";
 	}
 	stampTable += "<td>";
 	if(tmpTF) {
@@ -76,6 +79,7 @@ for(String[] spot: mapSpots) {
 	<link rel="stylesheet" type="text/css" href="css/stampRally.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihy_b9BGxc74hMTyBujEAUCTNWQOBUuA&libraries=drawing&lang=ja"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script type="text/javascript">
 		$(function() {
 			$('table#stampList > tbody > tr > td').css({'height': $('table#stampList > tbody > tr > td').width() + 'px'});
@@ -105,7 +109,7 @@ for(String[] spot: mapSpots) {
 			<%=mapMarkerCircle %>
 			<%=mapInfoWindow %>
 			<%=mapMarkerClick %>
-			
+
 		});
 	</script>
 </head>
@@ -119,12 +123,12 @@ for(String[] spot: mapSpots) {
 		</header>
 		<section>
 			<h1 style="display:none;">スタンプラリー</h1>
-			<div id="googleMap"></div>	
+			<div id="googleMap"></div>
 			<table id="stampList">
 				<tbody>
 					<%=stampTable %>
 				</tbody>
-			</table>		
+			</table>
 		</section>
 		<!-- フッター -->
 		<footer>

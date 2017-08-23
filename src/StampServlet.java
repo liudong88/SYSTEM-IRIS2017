@@ -71,7 +71,7 @@ public class StampServlet extends HttpServlet {
 				dba.Connect();
 				rs = dba.Select(sql);
 				while(rs.next()){
-					spotImage.put(rs.getString("spot_id"), rs.getString("file_path"));
+					spotImage.put(rs.getString("spot_id"), "./upload/small/" + rs.getString("file_path"));
 				}
 			}catch (SQLException e) {
 				// TODO: handle exception
@@ -87,7 +87,7 @@ public class StampServlet extends HttpServlet {
 			}
 
 			request.setAttribute("MAPSPOTS", spot);
-			request.setAttribute("SPOTIMAGE", spotImage);
+			request.setAttribute("STAMPMAP", spotImage);
 			RequestDispatcher rd = request.getRequestDispatcher("stampRally.jsp");
 			rd.forward(request, response);
 		}
