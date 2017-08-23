@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+div#googleMap {
+	width: 100%;
+}
+table#stampList {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: separate;
+	border-spacing: 10px;
+	
+}
+table#stampList > tbody > tr > td {
+	border-style: none;
+	border-width: 1px;
+	border-color: #ccc;
+	background-image: url('../images/stamp/dummy.png');
+	background-size: contain;
+}
+table#stampList > tbody > tr > td > img {
+	width: 100%;
+}
