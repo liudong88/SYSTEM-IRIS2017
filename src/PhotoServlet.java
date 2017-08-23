@@ -70,7 +70,13 @@ public class PhotoServlet extends HttpServlet {
 			String strLng = request.getParameter("lng");
 			String strText = request.getParameter("text");
 
+			System.out.println(strLat);
+			System.out.println(strLng);
+			System.out.println(strText);
+
 			String strFilePath = "";
+
+			System.out.println("1");
 
 			//画像を保存してファイル名を取得
 			try{
@@ -84,14 +90,12 @@ public class PhotoServlet extends HttpServlet {
 				out.println("</body></html>");*/
 				return;
 			}
+			System.out.println("2");
 
-			strLat = "34.684581";
-			strLng = "135.526349";
-			strText = "Testttt";
 			String sql = "";
 			sql = "INSERT INTO photos(file_path,latitude,longitude,user_id,photo_explanation)VALUES(";
 			sql += "'" + strFilePath + "'," + strLat + "," + strLng + "," + strUserId + ",'" + strText + "');";
-			//System.out.println(sql);
+			System.out.println(sql);
 
 			//データベースに接続し、データを挿入する
 			DatabaseAccess dba = new DatabaseAccess();

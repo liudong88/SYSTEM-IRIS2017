@@ -79,7 +79,6 @@ for(String[] spot: mapSpots) {
 	<link rel="stylesheet" type="text/css" href="css/stampRally.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihy_b9BGxc74hMTyBujEAUCTNWQOBUuA&libraries=drawing&lang=ja"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script type="text/javascript">
 		$(function() {
 			$('table#stampList > tbody > tr > td').css({'height': $('table#stampList > tbody > tr > td').width() + 'px'});

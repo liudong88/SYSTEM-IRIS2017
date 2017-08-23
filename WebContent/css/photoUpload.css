@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+html,body,#top_page_wrapper,session,form,.imgInput{
+	width:100%;
+	max-width:480px;
+}
+.imgInput img{
+	max-width:95%;
+	margin:0 auto;
+	display:block;
+}
+.imgInput input{
+	display: none;
+}
+
+.imgInput label{
+	width:90%;
+	height:50px;
+	line-height:50px;
+	margin:0 auto;
+	text-align:center;
+	background-color:red;
+	display:block;
+}

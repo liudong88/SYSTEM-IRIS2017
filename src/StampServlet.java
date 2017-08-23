@@ -65,13 +65,14 @@ public class StampServlet extends HttpServlet {
 				dba.Close();
 			}
 
-			sql = "SELECT spot_id,file_path FROM spot_photos,photos WHERE spot_photos.photo_id = photos.photo_id AND user_id = " + strUserId + ";";
-			HashMap<String, String> spotImage = new HashMap<String, String>();
+			sql = "SELECT spot_id,spot_photos.photo_id,file_path FROM spot_photos,photos WHERE spot_photos.photo_id = photos.photo_id AND user_id = " + strUserId + ";";
+			HashMap<String, String[]> spotImage = new HashMap<String, String[]>();
 			try{
 				dba.Connect();
 				rs = dba.Select(sql);
 				while(rs.next()){
-					spotImage.put(rs.getString("spot_id"), "./upload/small/" + rs.getString("file_path"));
+					String[] rec = {rs.getString("spot_photos.photo_id"),"./upload/small/" + rs.getString("file_path")};
+					spotImage.put(rs.getString("spot_id"), rec);
 				}
 			}catch (SQLException e) {
 				// TODO: handle exception
