@@ -48,7 +48,7 @@ for(String[] spot: mapSpots) {
 	mapMarker += "});";
 	//--
 	if(tmpTF) {
-		mapInfoWindow += "var infoWindow"+spot[0]+" = new google.maps.InfoWindow({position: new google.maps.LatLng("+spot[2]+", "+spot[3]+"),content:\"<a href='javascript:getDetails("+stampMap.get(spot[0])[0]+");'><img src='"+stampMap.get(spot[0])[1]+"' style='max-width:128px; max-height:128px;'></a>\" , pixelOffset: new google.maps.Size(0, -50),});";
+		mapInfoWindow += "var infoWindow"+spot[0]+" = new google.maps.InfoWindow({position: new google.maps.LatLng("+spot[2]+", "+spot[3]+"),content:\"<a href='javascript:getDetails("+stampMap.get(spot[0])[0]+");'><img src='"+stampMap.get(spot[0])[1]+"' style='max-width:128px; max-height:128px;'></a><br><p style='width:128px;overflow:hidden;'>"+spot[1]+"</p>\" , pixelOffset: new google.maps.Size(0, -50),});";
 		mapMarkerClick += "marker"+spot[0]+".addListener( \"click\", function ( argument ) {infoWindow"+spot[0]+".open(map);});";
 	}
 	//--
@@ -185,20 +185,20 @@ if(tmpCnt != 0) {
 			</table>
 		</section>
 		<!-- フッター -->
-		<footer>
-			<ul>
-				<li class="camera_nav"><a href="#"><img
-						src="images/camera_button.png" /></a></li>
-				<li class="collage_nav"><a href="#"><img
-						src="images/collage_button.png" /></a></li>
-				<li class="add_nav"><a href="#"><img
-						src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="#"><img
-						src="images/infomation_button.png" /></a></li>
-				<li class="user_nav"><a href="#"><img
-						src="images/user_button.png" /></a></li>
-			</ul>
-		</footer>
+					<footer>
+				<ul>
+					<li class="camera_nav"><a href="#"><img
+							src="images/photo_button.png" /></a></li>
+					<li class="collage_nav"><a href="#"><img
+							src="images/stamp_button.png" /></a></li>
+					<li class="add_nav"><a href="#"><img
+							src="images/add_button.png" /></a></li>
+					<li class="information_nav"><a href="#"><img
+							src="images/infomation_button.png" /></a></li>
+					<li class="user_nav"><a href="#"><img
+							src="images/profile_button.png" /></a></li>
+				</ul>
+			</footer>
 	</div>
 	<div id="modalWindow">
 		<div id="modalHeader"><a href="javascript:closeModal();">close <span style="font-size:200%;">×</span></a></div>
