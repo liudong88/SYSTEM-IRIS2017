@@ -1,5 +1,5 @@
 /**
- * 
+ * 実行例) href="javascript:getDetails(画像ID);"
  */
 function getDetails(id) {
 	$.ajax({
