@@ -1,4 +1,7 @@
-function openModal(){
+function openModal(user,photo_id){
+   
+    var input_html = '<input type="hidden" id="id_input" name="photo_id" value='+photo_id+'>';
+    
     console.log('activate');
     //キーボード操作などにより、オーバーレイが多重起動するのを防止する
     $(this).blur() ;	//ボタンからフォーカスを外す
@@ -9,18 +12,19 @@ function openModal(){
 
     //[$modal-overlay]をフェードインさせる
     $("#modal-overlay").fadeIn("slow");
-
     $("#comment-modal").fadeIn("slow");
 
-    centeringModalFix();
+    $("#com-form").append(input_html);
+
 }
 
 $(document).unbind().on('click',"#modal-overlay,#modal-close",
     function(){
         console.log('delete');
-        $("#comment-modal,#modal-overlay").fadeOut("slow",function(){
+        $("#comment-modal,#modal-overlay").fadeOut("fast",function(){
         //フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
             $("#modal-overlay").remove();
+            $("#id_input").remove();
         });
     }
 );

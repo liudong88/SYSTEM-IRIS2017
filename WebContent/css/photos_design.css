@@ -3,48 +3,45 @@
 
 #wrapper-main #photo-area{
     width: 100vw;
-    height: 87vh;
-    margin-top: 16.5%;
-    margin-bottom:13%;
-    background: white;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    background: #ffffb7;
+    font-size: 1em;
+    -webkit-overflow-scrolling: touch;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust : none;
 }
 
 #wrapper-main #photo-area .photo-view{
     margin-top:1em;
-    background: #75A3CB;
-    margin-bottom:1em;
-}
-
-.trigger_context_menu{
-    font-size:1.5em;
-    color: white;
-}
-
-#wrapper-main #photo-area .photo-view .photo-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    flex-shrink: 1;
-    flex-wrap: nowrap;
+    background: #ffffb7;;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 #wrapper-main #photo-area .photo-view .main-img{
-    width: 90vw;
-    height: 40vh;
-    background: red;
+    width: 95vw;
     margin: 0 auto;
+    background-color: #ffffb7;
 }
 
 #wrapper-main #photo-area .photo-view .main-img .preview-img{
     width: 100%;
-    height: 100%;
+}
+
+#wrapper-main #photo-area .photo-view .user-info{
+    width:95vw;
+    margin: 0 auto;
+    background-color: white;
+    padding:1em 0 0.5em 0;
 }
 
 #wrapper-main #photo-area .photo-view div#details{
-    margin-left:5%;
+    width:95vw;
+    margin: 0 auto;
+    background-color: white;
+    overflow: hidden;
+    border: 1px solid white;
+    border-radius: 0px 0px 20px 20px;
 }
 
 #wrapper-main #photo-area .photo-view div#details div#com-preview{
@@ -52,9 +49,40 @@
     height: auto;
 }
 
-.com-inner{
+div#details ul#com-preview{
+    padding-top:0.5em;
+}
+
+#details ul#com-preview ul.content{
+    margin:1em 0;
+}
+
+
+div#details ul#com-preview li.com-inner{
     margin: 1em 0;
+}
+
+.com-user{
     font-size:1em;
+    margin-left: 3%;
+    color :#ccc;
+}
+
+.com-main{
+    width: 80%;
+    margin: 0 auto;
+    font-size:1em;
+    background-color: #9BFFDA;
+    color: #0015B2;
+    border: 1px solid #9BFFDA;
+    border-radius: 0px 10px 10px 10px;
+    padding:0.5em;
+}
+
+.com-date{
+    color:#ccc;
+    text-align: right;
+    margin-right:3%;
 }
 
 .horizon{
@@ -63,6 +91,43 @@
 
 #more-button{
     padding: 1em;
+}
+
+.likeButton {
+	display: inline-block;
+	padding: 3px;
+	background-color: #fff;
+	color: #0015b2;
+	text-decoration: none;
+    border-radius: 5px/5px;
+    margin-left: 8%;
+}
+.likeButton > img {
+	height: 24px;
+}
+
+a#modal-open{
+    font-size:0.8em;
+    display: block;
+    text-align: right;
+    padding: 1em;
+
+}
+
+.more{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.more-button-area{
+    width:100vw;
+    background-color: #ffffb7;
+    padding:1em 0;
+    text-align: center;
+}
+
+.more-button-area #more-button{
+    display: inline;
 }
 
 
