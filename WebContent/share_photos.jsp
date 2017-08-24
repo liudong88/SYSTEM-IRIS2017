@@ -80,11 +80,12 @@
 		// )
 	</script>
 
+
+
 	<script>
-
 		var view ="";
-
-		var jsonObject = {
+		var min_id ="";
+		/*var jsonObject = {
 			"photo":[
 				{
 					"photo_id":"4",
@@ -198,135 +199,142 @@
 				}
 			],
 			"min_id":"1"
-		}
-		
-
+		}*/
 		$(function(){
 			view = "";
-			//$.ajax({
-				//url:"", //初回パラメータなし
-			//})
-			//console.log('in');
-			var json_length = jsonObject['photo'].length;
-			for(var i=0;i<json_length;i++){
-				setUserGood();
-				var json_com_len = jsonObject['photo'][i]['comments'].length;
-				console.log(i+':loop_main');
-				view += '<section class="photo-view">'
-					+'<div class="main-img">'
-						+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
-					+'</div>'
-					+'<ul class="user-info">'
-						+'<li class="com-user">'+jsonObject['photo'][i]['user']+'</li>'
-						+'<li class="com-main">'+jsonObject['photo'][i]['explanation']+'</li>'
-						+'<li class="com-date">'+jsonObject['photo'][i]['time']+'</li>'
-					+'</ul>'
-					+'<div id="details">'
-						+'<span style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
-						+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
-						+'<ul id="com-preview">';
-				for(var j=0;j<json_com_len;j++){
-					//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
-					var now_loop = j+1;
-					if((now_loop%2)==0){
-						//console.log('in:'+[j]);
-						view += '<li class="com-inner">';
-							view += '<ul>'
-								view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
-								view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-								view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
-							view += '</ul>' 
-						view += '</li>';
-						//console.log('in loop2:'+[j]);
-						if(j != (json_com_len-1)){
-							view += '</ul><div class="more">もっと見る</div>';
+			$.ajax({
+				url:"./PhotoListServlet", //初回パラメータなし
+				type: 'post',
+				datatype: 'json',
+				async: 'false',
+			}).then(
+				function(data){
+					//console.log('in');
+					var jsonObject = data;
+					min_id = jsonObject['min_id'];
+					$.ajaxSetup({async:true});
+					var json_length = jsonObject['photo'].length;
+					for(var i=0;i<json_length;i++){
+						setUserGood();
+						var json_com_len = jsonObject['photo'][i]['comments'].length;
+						console.log(i+':loop_main');
+						view += '<section class="photo-view">'
+							+'<div class="main-img">'
+								+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
+							+'</div>'
+							+'<ul class="user-info">'
+								+'<li class="com-user">'+jsonObject['photo'][i]['user']+'</li>'
+								+'<li class="com-main">'+jsonObject['photo'][i]['explanation']+'</li>'
+								+'<li class="com-date">'+jsonObject['photo'][i]['time']+'</li>'
+							+'</ul>'
+							+'<div id="details">'
+								+'<span style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
+								+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
+								+'<ul id="com-preview">';
+						for(var j=0;j<json_com_len;j++){
+							//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
+							var now_loop = j+1;
+							if((now_loop%2)==0){
+								//console.log('in:'+[j]);
+								view += '<li class="com-inner">';
+									view += '<ul>'
+										view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+										view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
+									view += '</ul>' 
+								view += '</li>';
+								//console.log('in loop2:'+[j]);
+								if(j != (json_com_len-1)){
+									view += '</ul><div class="more">もっと見る</div>';
+								}
+							}else{
+								view += '<ul class="content">';
+								view += '<ul class="com-inner">';
+									view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+									view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
+								view += '</ul>';
+							}
 						}
-					}else{
-						view += '<ul class="content">';
-						view += '<ul class="com-inner">';
-							view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
-							view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-							view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
-						view += '</ul>';
+						view += '</ul>'
+							+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
+							+'</div>'
+						+'</section>';
+						//console.log(i);
 					}
+					// if(json_length != 0){
+					// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
+					// }
+					//console.log(view);
+					$("#photo-area").append(view);
 				}
-				view += '</ul>'
-					+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
-					+'</div>'
-				+'</section>';
-				//console.log(i);
-			}
-			// if(json_length != 0){
-			// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-			// }
-			//console.log(view);
-			$("#photo-area").append(view);
-			
+			)
 		})
-	</script>
-
-	<script>
-	
-		
 		function moreContent(){
 			view ="";
-			//追加読み込み処理
-			//$.ajax({
-				//url:"", //getでパラメータに、min_idを追加
-			//})
-
-			//console.log('in');
-			var json_length = jsonObject['photo'].length;
-			for(var i=0;i<json_length;i++){
-				setUserGood();
-				var json_com_len = jsonObject['photo'][i]['comments'].length;
-				view += '<section class="photo-view">'
-					+'<div class="main-img">'
-						+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
-					+'</div>'
-					+'<ul class="user-info">'
-						+'<li class="com-user">User:'+jsonObject['photo'][i]['user']+'</li>'
-						+'<li class="com-main">'+jsonObject['photo'][i]['explanation']+'</li>'
-						+'<li class="com-date">Date'+jsonObject['photo'][i]['time']+'</li>'
-					+'</ul>'
-					+'<div id="details">'
-						+'<span  style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
-						+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
-						+'<ul id="com-preview">'
-				for(var j=0;j<json_com_len;j++){
-					//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
-					var now_loop = j+1;
-					if((now_loop%2)==0){
-						//console.log('in:'+[j]);
-						view += '<li class="com-inner">';
-							view += '<ul class="com-inner">'
-								view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
-								view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-								view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
-							view += '</ul>' 
-						view += '</li>';
-						//console.log('in loop2:'+[j]);
-						if(j != (json_com_len-1)){
-							view += '</ul><div class="more">もっと見る</div>';
-						}
-					}else{
-						view += '<ul class="content">';
-						view += '<ul class="com-inner">';
-							view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
-							view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-							view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
-						view += '</ul>';
+			$.ajax({
+				url:"./PhotoListServlet?min_id="+min_id, //初回パラメータなし
+				type: 'post',
+				datatype: 'json',
+				async: 'false',
+			}).then(
+				function(data){
+					var jsonObject = data;
+					min_id = jsonObject['min_id'];
+					$.ajaxSetup({async:true});
+					var json_length = jsonObject['photo'].length;
+					for(var i=0;i<json_length;i++){
+						setUserGood();
+						var json_com_len = jsonObject['photo'][i]['comments'].length;
+						view += '<section class="photo-view">'
+							+'<div class="main-img">'
+								+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
+							+'</div>'
+							+'<ul class="user-info">'
+								+'<li class="com-user">User:'+jsonObject['photo'][i]['user']+'</li>'
+								+'<li class="com-main">'+jsonObject['photo'][i]['explanation']+'</li>'
+								+'<li class="com-date">Date'+jsonObject['photo'][i]['time']+'</li>'
+							+'</ul>'
+							+'<div id="details">'
+								+'<span  style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
+								+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
+								+'<ul id="com-preview">'
+						for(var j=0;j<json_com_len;j++){
+							//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
+							var now_loop = j+1;
+							if((now_loop%2)==0){
+								//console.log('in:'+[j]);
+								view += '<li class="com-inner">';
+									view += '<ul class="com-inner">'
+										view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+										view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
+									view += '</ul>' 
+								view += '</li>';
+								//console.log('in loop2:'+[j]);
+								if(j != (json_com_len-1)){
+									view += '</ul><div class="more">もっと見る</div>';
+								}
+							}else{
+								view += '<ul class="content">';
+								view += '<ul class="com-inner">';
+									view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+									view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
+								view += '</ul>';
+							}
+						}		
+						view += '</ul>'
+								+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する　<i class="fa fa-pencil" aria-hidden="true"></i></a>'
+							+'</div>'
+						+'</section>';
 					}
-				}		
-				view += '</ul>'
-						+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する　<i class="fa fa-pencil" aria-hidden="true"></i></a>'
-					+'</div>'
-				+'</section>';
-			}
-			// if(json_length != 0){
-			// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-			// }
-			$("#photo-area").append(view);
+					// if(json_length != 0){
+					// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
+					// }
+					$("#photo-area").append(view);
+				}
+			)
 		}
 	</script>
 
