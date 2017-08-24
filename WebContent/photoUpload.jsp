@@ -33,7 +33,9 @@
 					<p>写真説明</p>
 					<textarea name="text"></textarea>
 				</div>
-				<input type="submit" value="アップロード">
+				<div id="button_wrapper">
+					<button type="submit" id="sbbutton" disabled>投稿する</button>
+				</div>
 			</form>
 		</section>
 		<!-- フッター -->

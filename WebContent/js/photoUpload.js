@@ -16,12 +16,14 @@ $(function(){
             if(!this.files.length){
                 if(0 < selfImg.size()){
                     selfImg.remove();
+                    $('#sbbutton').css("background-color","#303030").prop("disabled", true);
                     return;
                 }
             } else {
                 if(file.type.match('image.*')){
                     if(!(0 < selfImg.size())){
                         selfFile.append('<p class="imgView">写真プレビュー</p><img alt="" class="imgView">');
+                        $('#sbbutton').css("background-color","#85e249").prop("disabled", false);
                     }
                     var prevElm = selfFile.find('.imgView');
                     fileRdr.onload = function() {
@@ -31,6 +33,7 @@ $(function(){
                 } else {
                     if(0 < selfImg.size()){
                         selfImg.remove();
+                        $('#sbbutton').css("background-color","#303030").prop("disabled", true);
                         return;
                     }
                 }
