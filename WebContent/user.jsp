@@ -71,7 +71,7 @@ if(tmpCnt != 0) {
 			</div>
 		</header>
 		<section>
-			<h1 id="userName"><%=usrName %></h1>
+			<h1 id="userName"><img src="./images/icon/userIcon.png"> <%=usrName %></h1>
 			<table id="myImg">
 				<tbody><%=imgTable %></tbody>
 			</table>

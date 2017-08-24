@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 </head>
-<body>
+<body style="background-color:#fff;">
 	<div id="top_page_wrapper">
 		<!-- ヘッダー -->
 		<header>
