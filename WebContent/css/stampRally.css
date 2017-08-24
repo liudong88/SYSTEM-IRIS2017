@@ -24,30 +24,3 @@ table#stampList > tbody > tr > td.noStamp {
 table#stampList > tbody > tr > td > img {
 	width: 100%;
 }
-/*--modal--*/
-div#modalWindow {
-	display: none;
-	position: fixed;
-	background-color: #7caeff;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10;
-	overflow: auto;
-}
-div#modalHeader {
-	padding: 5px;
-	overflow: hidden;
-}
-div#modalHeader > a {
-	display: block;
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	padding: 5px;
-	font-weight: bold;
-	background-color: #fff;
-	color: #7caeff;
-	text-decoration: none;
-}

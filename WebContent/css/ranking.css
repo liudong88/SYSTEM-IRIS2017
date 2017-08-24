@@ -28,6 +28,10 @@ img.goodNum {
 	height: 24px;
 	position: relative;
 }
+img.goodNum + img.goodNum {
+	left: -8px;
+	margin: 0 -5px 0 0;
+}
 /*----*/
 ul#selectSpot > li {
 	background-color: #eee;
@@ -40,7 +44,7 @@ ul#selectSpot > li > ul {
 	padding: 10px 0 0 10px;
 }
 ul#selectSpot > li > ul > li {
-	padding: 0 0 5px;
+	padding: 0 0 8px;
 }
 ul#selectSpot > li > ul > li > a {
 	display: block;
