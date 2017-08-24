@@ -25,7 +25,7 @@
 			<form action="PhotoServlet" method="post" enctype="multipart/form-data">
 				<div id="#target_id">
 					<div class="imgInput">
-						<input type="file" name="filename" id="inputphoto" size="50">
+						<input type="file" name="filename" id="inputphoto" size="50" accept="image/jpeg,image/png" required>
 						<label for="inputphoto" id="filebutton">写真を選択する</label>
 					</div>
 					<input type="hidden" name="lat" id="lat">
@@ -38,16 +38,16 @@
 		<!-- フッター -->
 		<footer>
 			<ul>
-				<li class="camera_nav"><a href="#"><img
-						src="images/camera_button.png" /></a></li>
-				<li class="collage_nav"><a href="#"><img
-						src="images/collage_button.png" /></a></li>
-				<li class="add_nav"><a href="#"><img
+				<li class="camera_nav"><a href="share_photos.jsp"><img
+						src="images/photo_button.png" /></a></li>
+				<li class="collage_nav"><a href="./StampServlet"><img
+						src="images/stamp_button.png" /></a></li>
+				<li class="add_nav"><a href="photoUpload.jsp"><img
 						src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="#"><img
+				<li class="information_nav"><a href="./RankingServlet"><img
 						src="images/infomation_button.png" /></a></li>
-				<li class="user_nav"><a href="#"><img
-						src="images/user_button.png" /></a></li>
+				<li class="user_nav"><a href="./UserServlet"><img
+						src="images/profile_button.png" /></a></li>
 			</ul>
 		</footer>
 	</div>

@@ -5,7 +5,7 @@
 	import="java.util.ArrayList"
 	import="java.util.HashMap"
 %><%
-String usrName = "丙てーとく";
+/*String usrName = "丙てーとく";
 ArrayList<String[]> images = new ArrayList<String[]>();
 
 //--▼▼dummy▼▼	--
@@ -20,12 +20,15 @@ images.add(dm1);
 images.add(dm2);
 images.add(dm0);
 images.add(dm1);
-//--▲▲dummy▲▲--
+//--▲▲dummy▲▲--*/
+
+String usrName = (String)request.getAttribute("USERNAME");
+ArrayList<String[]> images = (ArrayList<String[]>)request.getAttribute("IMAGES");
 
 String imgTable = "";
 int tmpCnt = 0;
 for(String[] img: images) {
-	if(tmpCnt == 0) 
+	if(tmpCnt == 0)
 		imgTable += "<tr>";
 	imgTable += "<td><a href=\"javascript:getDetails("+img[0]+");\"><img src=\""+img[1]+"\"></a></td>";
 	tmpCnt++;
@@ -54,7 +57,8 @@ if(tmpCnt != 0) {
 	<script type="text/javascript">
 		function getDetails(id) {
 			$.ajax({
-				url: './js/samplePhotoDetails.json?photo_id=' + id,
+				//url: './js/samplePhotoDetails.json?photo_id=' + id,
+				url: './PhotoDetailsServlet?photo_id=' + id,
 				type: 'GET',
 				datatype: 'json'
 			}).then(function(json) {
@@ -89,7 +93,7 @@ if(tmpCnt != 0) {
 			}
 			HTML += '</ul>';
 			HTML += '</div>';
-	
+
 			$('div#modalWindow > div#modalContent').html(HTML);
 			$('body').css({overflow: 'hidden'});
 			$('div#modalWindow').fadeIn('fast', function() {
@@ -117,20 +121,20 @@ if(tmpCnt != 0) {
 			</table>
 		</section>
 		<!-- フッター -->
-					<footer>
-				<ul>
-					<li class="camera_nav"><a href="#"><img
-							src="images/photo_button.png" /></a></li>
-					<li class="collage_nav"><a href="#"><img
-							src="images/stamp_button.png" /></a></li>
-					<li class="add_nav"><a href="#"><img
-							src="images/add_button.png" /></a></li>
-					<li class="information_nav"><a href="#"><img
-							src="images/infomation_button.png" /></a></li>
-					<li class="user_nav"><a href="#"><img
-							src="images/profile_button.png" /></a></li>
-				</ul>
-			</footer>
+		<footer>
+			<ul>
+				<li class="camera_nav"><a href="share_photos.jsp"><img
+						src="images/photo_button.png" /></a></li>
+				<li class="collage_nav"><a href="./StampServlet"><img
+						src="images/stamp_button.png" /></a></li>
+				<li class="add_nav"><a href="photoUpload.jsp"><img
+						src="images/add_button.png" /></a></li>
+				<li class="information_nav"><a href="./RankingServlet"><img
+						src="images/infomation_button.png" /></a></li>
+				<li class="user_nav"><a href="./UserServlet"><img
+						src="images/profile_button.png" /></a></li>
+			</ul>
+		</footer>
 	</div>
 	<div id="modalWindow">
 		<div id="modalHeader"><a href="javascript:closeModal();">close <span style="font-size:200%;">×</span></a></div>
