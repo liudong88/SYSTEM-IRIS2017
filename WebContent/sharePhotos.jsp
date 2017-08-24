@@ -181,7 +181,7 @@
 			view = "";
 			$.ajax({
 				url:"./PhotoListServlet", //初回パラメータなし
-				type: 'post',
+				type: 'get',
 				datatype: 'json',
 				async: 'false',
 			}).then(
@@ -311,7 +311,7 @@
 			view ="";
 			$.ajax({
 				url:"./PhotoListServlet?min_id="+min_id,
-				type: 'post',
+				type: 'get',
 				datatype: 'json',
 				async: 'false',
 			}).then(
@@ -412,7 +412,7 @@
 	<div id="wrapper-main">
 		
 		<div id="comment-modal">
-			<form action="" id="com-form">
+			<form action="./PhotoCommentServlet" method="post" id="com-form">
 				<p id="dest-user"></p>
 				<hr>
 				<textarea name="p_comment" cols="30" rows="10" id="com-modal-mes"></textarea><br>
