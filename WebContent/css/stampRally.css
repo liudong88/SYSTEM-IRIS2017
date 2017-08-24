@@ -1,6 +1,11 @@
 @CHARSET "UTF-8";
 div#googleMap {
-	width: 100%;
+	margin: 10px;
+	border-style: solid;
+	border-width: 0; 
+	border-color: #0015b2;
+	border-radius: 10px/10px;
+	overflow: hidden;
 }
 table#stampList {
 	width: 100%;

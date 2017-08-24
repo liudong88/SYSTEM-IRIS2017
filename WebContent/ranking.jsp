@@ -9,9 +9,9 @@ ArrayList<String[]> ranking = new ArrayList<String[]>(); // ranking
 ArrayList<String[]> spots   = new ArrayList<String[]>(); // spots   ...plz request.getAttribute
 String nowSpotID = ""; // nowSpotID 全スポットの場合は空
 //--dummy↓↓↓--
-String dummyRanking0[] = {"./images/stamp/Richelieu.png", "リシュリュううううううううううう", "67890", "丙てーとく"};
-String dummyRanking1[] = {"./images/stamp/Richelieu.png", "リシュリュううううううううううう", "123",    "丙てーとく"};
-String dummyRanking2[] = {"./images/stamp/Richelieu.png", "リシュリュううううううううううう", "45",     "丙てーとく"};
+String dummyRanking0[] = {"./images/stamp/Richelieu.png", "リシュリュううううううううううう", "67890", "丙てーとく", "1"};
+String dummyRanking1[] = {"./images/stamp/Richelieu.png", "リシュリュううううううううううう", "123",    "丙てーとく", "1"};
+String dummyRanking2[] = {"./images/stamp/Richelieu.png", "リシュリュううううううううううう", "45",     "丙てーとく", "1"};
 ranking.add(dummyRanking0);
 ranking.add(dummyRanking1);
 ranking.add(dummyRanking2);
@@ -33,15 +33,19 @@ for(String[] spot: spots) {
 for(String[] data: ranking) {
 	String tmpNum[] = data[2].split("");
 	String tmpGood = "";
-	int tmpCnt = 0;
 	for(String num: tmpNum) {
 		tmpGood += "<img class=\"goodNum\" src=\"./images/ranking/num_"+num+".png\">";
-		tmpCnt += 8;
 	}
 	
-	rankingList += "<tr><th rowspan=\"3\" style=\"text-wrap:none;text-align:left;border-style:solid;border-color:#ff6c6c;border-width:0 0 5px;\"><div style=\"margin:auto;display:inline-block;\">"+tmpGood+"</div></th><td style=\"text-align:right;\">"+data[3]+"</td></tr>";
-	rankingList += "<tr><td><img src=\""+data[0]+"\"></td></tr>";
-	rankingList += "<tr><td style=\"border-style:solid;border-color:#ff6c6c;border-width:0 0 5px;\">"+data[1]+"</td></tr>";
+	rankingList += "<li>";
+	rankingList += "<ul>";
+	rankingList += "<li style=\"background-color:#eee;border-radius:0/0;\"><img class=\"goodNum\" src=\"./images/icon/heart_true.png\">"+tmpGood+"</li>";
+	rankingList += "<li style=\"padding:0;\"><a href=\"javascript:getDetails("+data[4]+");\"><img src=\""+data[0]+"\"></a></li>";
+	rankingList += "<li style=\"padding:0 5px;color:#ccc;\">"+data[3]+"</li>";
+	rankingList += "<li style=\"border-style:solid;background-color:#9bffd9;margin:5px 10px 10px 2em;\">"+data[1]+"</li>";
+	rankingList += "</ul>";
+	rankingList += "</li>";
+
 }
 if(nowSpotID.isEmpty()) {
 	nowSpot = "すべて";
@@ -62,7 +66,11 @@ if(nowSpotID.isEmpty()) {
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/ranking.css">
+	<link rel="stylesheet" type="text/css" href="./css/photoDetails.css">
+	<link rel="stylesheet" type="text/css" href="./css/userGood.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./js/photoDetails.js"></script>
+	<script type="text/javascript" src="./js/userGood.js"></script>
 	<script type="text/javascript">
 	var selectOpenTF = false;
 	var selectSpotHeight_1;
@@ -101,11 +109,7 @@ if(nowSpotID.isEmpty()) {
 					</ul>
 				</li>
 			</ul>
-			<table>
-				<thead><tr><th style="width:30%;">♡</th><th>Photos</th></tr></thead>
-				<tbody><%=rankingList %></tbody>
-				<tfoot><tr><th>♡</th><th>Photos</th></tr></tfoot>
-			</table>
+				<ul id="photoRanking"><%=rankingList %></ul>
 		</section>
 		<!-- フッター -->
 		<footer>
@@ -122,6 +126,10 @@ if(nowSpotID.isEmpty()) {
 							src="images/profile_button.png" /></a></li>
 				</ul>
 		</footer>
+	</div>
+	<div id="modalWindow">
+		<div id="modalHeader"><a href="javascript:closeModal();">close <span style="font-size:200%;">×</span></a></div>
+		<div id="modalContent"></div>
 	</div>
 </body>
 </html>
