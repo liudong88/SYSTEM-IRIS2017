@@ -144,11 +144,11 @@ if(tmpCnt != 0) {
 				<li class="camera_nav"><a href="share_photos.jsp"><img
 						src="images/photo_button.png" /></a></li>
 				<li class="collage_nav"><a href="./StampServlet"><img
-						src="images/stamp_button.png" /></a></li>
+						src="images/stamp_current_button.png" /></a></li>
 				<li class="add_nav"><a href="photoUpload.jsp"><img
 						src="images/add_button.png" /></a></li>
 				<li class="information_nav"><a href="./RankingServlet"><img
-						src="images/infomation_button.png" /></a></li>
+						src="images/rank_button.png" /></a></li>
 				<li class="user_nav"><a href="./UserServlet"><img
 						src="images/profile_button.png" /></a></li>
 			</ul>
