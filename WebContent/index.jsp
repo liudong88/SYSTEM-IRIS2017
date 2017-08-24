@@ -18,7 +18,10 @@
 		<!-- ヘッダー -->
 		<header>
 			<div id="logo">
-				<img src="images/header_logo.png" />
+				<img src="images/logo.png" />
+			</div>
+			<div id="logout">
+				<a href="#"><img src="images/logout_button.png"></a>
 			</div>
 		</header>
 		<div id="background">
@@ -32,7 +35,6 @@
 				  </form>
 				</div>
 			</article>
-			<!-- フッター -->
 
 		</div>
 	</div>

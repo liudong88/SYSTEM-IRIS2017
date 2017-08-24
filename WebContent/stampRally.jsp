@@ -77,18 +77,18 @@ for(String[] spot: mapSpots) {
 		</section>
 		<!-- フッター -->
 					<footer>
-				<ul>
-					<li class="camera_nav"><a href="#"><img
-							src="images/photo_button.png" /></a></li>
-					<li class="collage_nav"><a href="#"><img
-							src="images/stamp_button.png" /></a></li>
-					<li class="add_nav"><a href="#"><img
-							src="images/add_button.png" /></a></li>
-					<li class="information_nav"><a href="#"><img
-							src="images/infomation_button.png" /></a></li>
-					<li class="user_nav"><a href="#"><img
-							src="images/profile_button.png" /></a></li>
-				</ul>
+						<ul>
+							<li class="photo_nav"><a href="#"><img
+									src="images/photo_button.png" /></a></li>
+							<li class="stamp_nav"><a href="#"><img
+									src="images/stamp_current_button.png" /></a></li>
+							<li class="add_nav"><a href="#"><img
+									src="images/add_button.png" /></a></li>
+							<li class="rank_nav"><a href="#"><img
+									src="images/rank_button.png" /></a></li>
+							<li class="user_nav"><a href="#"><img
+									src="images/profile_button.png" /></a></li>
+						</ul>
 			</footer>
 	</div>
 </body>
