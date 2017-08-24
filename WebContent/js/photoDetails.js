@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 function getDetails(id) {
 	$.ajax({
-		url: './js/samplePhotoDetails.json?photo_id=' + id,
+		//url: './js/samplePhotoDetails.json?photo_id=' + id,
+		url: './PhotoDetailsServlet?photo_id=' + id,
 		type: 'GET',
 		datatype: 'json'
 	}).then(function(json) {
