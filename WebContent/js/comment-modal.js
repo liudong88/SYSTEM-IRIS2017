@@ -15,6 +15,7 @@ function openModal(user,photo_id){
     $("#comment-modal").fadeIn("slow");
 
     $("#com-form").append(input_html);
+    $("#dest-user").html(user+'の画像へコメント')
 
 }
 
