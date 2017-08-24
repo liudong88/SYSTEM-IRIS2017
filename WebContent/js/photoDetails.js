@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  *
+=======
+ * 実行例) href="javascript:getDetails(画像ID);"
+>>>>>>> refs/heads/master
  */
 function getDetails(id) {
 	$.ajax({
@@ -24,7 +28,7 @@ function openModal(data) {
 	HTML += '<li style="display:block;padding:0;color:#ccc;">'+data.user+'</li>';
 	HTML += '<li style="display:block;margin:0 5px 0 1em;background-color:#9bffd9;">'+data.explanation+'</li>';
 	HTML += '<li style="display:block;padding:0;text-align:right;font-weight:normal;color:#ccc;">'+data.time+'</li>';
-	HTML += '<li><img src="./images/icon/heart.png"> '+data.good_cnt+'件</li>';
+	HTML += '<li><a class="goodButton goodPhotoID_'+data.photo_id+'" href="javascript:sendGood('+data.photo_id+');"><img src="./images/icon/heart_'+data.user_good+'.png"> <span>'+data.good_cnt+'</span></a></li>';
 	HTML += '<li><img src="./images/icon/comment.png"> '+data.com_cnt+'件</li>';
 	HTML += '</ul>';
 	//--comment--

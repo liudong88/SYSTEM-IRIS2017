@@ -54,8 +54,10 @@ if(tmpCnt != 0) {
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/user.css">
 	<link rel="stylesheet" type="text/css" href="./css/photoDetails.css">
+	<link rel="stylesheet" type="text/css" href="./css/userGood.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="./js/photoDetails.js"></script>
+	<script type="text/javascript" src="./js/userGood.js"></script>
 </head>
 <body>
 	<div id="top_page_wrapper">

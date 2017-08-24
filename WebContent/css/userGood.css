@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+a.goodButton {
+	display: inline-block;
+	padding: 3px;
+	background-color: #fff;
+	color: #0015b2;
+	text-decoration: none;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #0015b2;
+	border-radius: 5px/5px;
+}
+a.goodButton > img {
+	height: 24px;
+}
