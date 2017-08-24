@@ -76,7 +76,7 @@ public class HackuRegister extends HttpServlet {
 			//-----ここまでがINSERT文----------------------------------------------------------
 			System.out.println(sql);
 			//参照系SQL以外を実行する
-			int cnt = st.executeUpdate(sql);
+			st.executeUpdate(sql);
 
 		}catch (ClassNotFoundException e) {
 
