@@ -48,7 +48,7 @@ for(String[] data: ranking) {
 	rankingList += "<tr><td style=\"border-style:solid;border-color:#ff6c6c;border-width:0 0 5px;\">"+data[1]+"</td></tr>";
 }
 if(nowSpotID.isEmpty()) {
-	nowSpot = "全スポット";
+	nowSpot = "すべて";
 } else {
 	for(String[] spot: spots) {
 		if(nowSpotID.equals(spot[0])) {
@@ -98,9 +98,9 @@ if(nowSpotID.isEmpty()) {
 		</header>
 		<section>
 			<ul id="selectSpot">
-				<li onclick="selectOpen();"><span style="font-size:125%;">▼ スポット別</span> - <%=nowSpot %>
+				<li onclick="selectOpen();"><span style="font-size:125%;">▼ 絞り込み</span> - <%=nowSpot %>
 					<ul>
-						<li><a href="?">▶ 全スポット</a></li>
+						<li><a href="?">▶ すべて</a></li>
 						<%=spotList %>
 					</ul>
 				</li>

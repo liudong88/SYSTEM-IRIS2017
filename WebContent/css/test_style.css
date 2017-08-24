@@ -8,19 +8,29 @@
 #wrapper-main header{
     width: 100vw;
     height: 10vh;
-    background: green;
+    background: #00A0E9;
+    position: fixed;
+    top: 0;
 }
 
 #wrapper-main footer{
     width: 100vw;
-    height: 12vh;
-    margin-top: 63vh;
+    height: 8vh;
     position: fixed;
     bottom: 0;
-    background: blue;
+    background: #00A0E9;
 }
 
+#wrapper-main footer ul.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+}
 
-
-
-
+ul.nav img.nav-img{
+    width:100%;
+    height:100%;
+}
