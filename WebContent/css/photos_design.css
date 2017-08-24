@@ -3,15 +3,17 @@
 
 #wrapper-main #photo-area{
     width: 100vw;
-    height: 72vh;
-    margin-top: 5vh;
-    background: violet;
-    overflow: scroll;
+    height: 87vh;
+    margin-top: 16.5%;
+    margin-bottom:13%;
+    background: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #wrapper-main #photo-area .photo-view{
     margin-top:1em;
-    background: gold;
+    background: #75A3CB;
     margin-bottom:1em;
 }
 
@@ -30,8 +32,8 @@
 }
 
 #wrapper-main #photo-area .photo-view .main-img{
-    width: 50vw;
-    height: 50vh;
+    width: 90vw;
+    height: 40vh;
     background: red;
     margin: 0 auto;
 }
@@ -40,4 +42,28 @@
     width: 100%;
     height: 100%;
 }
+
+#wrapper-main #photo-area .photo-view div#details{
+    margin-left:5%;
+}
+
+#wrapper-main #photo-area .photo-view div#details div#com-preview{
+    width: 90vh;
+    height: auto;
+}
+
+.com-inner{
+    margin: 1em 0;
+    font-size:1em;
+}
+
+.horizon{
+    width: 100vh;
+}
+
+#more-button{
+    padding: 1em;
+}
+
+
 
