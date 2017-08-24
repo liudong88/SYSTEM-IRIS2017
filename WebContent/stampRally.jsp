@@ -128,7 +128,10 @@ if(tmpCnt != 0) {
 		<!-- ヘッダー -->
 		<header>
 			<div id="logo">
-				<img src="images/header_logo.png" />
+				<img src="images/logo.png" />
+			</div>
+			<div id="logout">
+				<a href="./Logout"><img src="images/logout_button.png"></a>
 			</div>
 		</header>
 		<section>

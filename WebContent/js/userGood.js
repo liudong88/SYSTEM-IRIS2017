@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 var userGoods = new Object();
 
@@ -18,7 +18,7 @@ function sendGood(photo_id) {
 		tmpSignal = 'cancel';
 	}
 	$.ajax({
-		url: '?photo_id='+photo_id+'&signal='+tmpSignal,
+		url: 'PhotoGoodServlet?photo_id='+photo_id+'&signal='+tmpSignal,
 		type: 'GET'
 	}).then(function() {
 		var tmpGoodNum = $('a.goodPhotoID_'+photo_id).find('span').text();

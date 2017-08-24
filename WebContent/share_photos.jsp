@@ -423,7 +423,12 @@
 			<a href="#" id="modal-close">close</a>
 		</div>
 		<header>
-			<p>test</p>
+			<div id="logo">
+				<img src="images/logo.png" />
+			</div>
+			<div id="logout">
+				<a href="./Logout"><img src="images/logout_button.png"></a>
+			</div>
 		</header>
 		<article id="photo-area">
 
@@ -445,13 +450,13 @@
 		<footer>
 			<ul class="nav">
 				<li class="camera_nav"><a href="share_photos.jsp"><img class="nav-img"
-						src="images/photo_button.png" /></a></li>
+						src="images/photo_current_button.png" /></a></li>
 				<li class="collage_nav"><a href="./StampServlet"><img class="nav-img"
 						src="images/stamp_button.png" /></a></li>
 				<li class="add_nav"><a href="photoUpload.jsp"><img class="nav-img"
 						src="images/add_button.png" /></a></li>
 				<li class="information_nav"><a href="./RankingServlet"><img class="nav-img"
-						src="images/infomation_button.png" /></a></li>
+						src="images/rank_button.png" /></a></li>
 				<li class="user_nav"><a href="./UserServlet"><img class="nav-img"
 						src="images/profile_button.png" /></a></li>
 			</ul>

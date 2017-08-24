@@ -64,7 +64,10 @@ if(tmpCnt != 0) {
 		<!-- ヘッダー -->
 		<header>
 			<div id="logo">
-				<img src="images/header_logo.png" />
+				<img src="images/logo.png" />
+			</div>
+			<div id="logout">
+				<a href="./Logout"><img src="images/logout_button.png"></a>
 			</div>
 		</header>
 		<section>
@@ -83,9 +86,9 @@ if(tmpCnt != 0) {
 				<li class="add_nav"><a href="photoUpload.jsp"><img
 						src="images/add_button.png" /></a></li>
 				<li class="information_nav"><a href="./RankingServlet"><img
-						src="images/infomation_button.png" /></a></li>
+						src="images/rank_button.png" /></a></li>
 				<li class="user_nav"><a href="./UserServlet"><img
-						src="images/profile_button.png" /></a></li>
+						src="images/profile_current_button.png" /></a></li>
 			</ul>
 		</footer>
 	</div>

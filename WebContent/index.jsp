@@ -20,9 +20,6 @@
 			<div id="logo">
 				<img src="images/logo.png" />
 			</div>
-			<div id="logout">
-				<a href="#"><img src="images/logout_button.png"></a>
-			</div>
 		</header>
 		<div id="background">
 			<section></section>
