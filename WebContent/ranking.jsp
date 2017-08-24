@@ -35,11 +35,11 @@ for(String[] data: ranking) {
 	String tmpGood = "";
 	int tmpCnt = 0;
 	for(String num: tmpNum) {
-		tmpGood += "<img class=\"goodNum\" src=\"./images/ranking/num_"+num+".png\" style=\"left:-"+tmpCnt+"px;right:0;\">";
+		tmpGood += "<img class=\"goodNum\" src=\"./images/ranking/num_"+num+".png\">";
 		tmpCnt += 8;
 	}
 	
-	rankingList += "<tr><th rowspan=\"3\" style=\"text-wrap:none;text-align:left;border-style:solid;border-color:#ff6c6c;border-width:0 0 5px;\">"+tmpGood+"</th><td style=\"text-align:right;\">"+data[3]+"</td></tr>";
+	rankingList += "<tr><th rowspan=\"3\" style=\"text-wrap:none;text-align:left;border-style:solid;border-color:#ff6c6c;border-width:0 0 5px;\"><div style=\"margin:auto;display:inline-block;\">"+tmpGood+"</div></th><td style=\"text-align:right;\">"+data[3]+"</td></tr>";
 	rankingList += "<tr><td><img src=\""+data[0]+"\"></td></tr>";
 	rankingList += "<tr><td style=\"border-style:solid;border-color:#ff6c6c;border-width:0 0 5px;\">"+data[1]+"</td></tr>";
 }

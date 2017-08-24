@@ -82,57 +82,11 @@ if(tmpCnt != 0) {
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/stampRally.css">
+	<link rel="stylesheet" type="text/css" href="./css/photoDetails.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihy_b9BGxc74hMTyBujEAUCTNWQOBUuA&libraries=drawing&lang=ja"></script>
+	<script type="text/javascript" src="./js/photoDetails.js"></script>
 	<script type="text/javascript">
-		function getDetails(id) {
-			$.ajax({
-				url: './js/samplePhotoDetails.json?photo_id=' + id,
-				type: 'GET',
-				datatype: 'json'
-			}).then(function(json) {
-				var data = json.photo[0];
-				openModal(data);
-			}, function(json) {
-				console.log('getDetails: error');
-			});
-		}
-		function openModal(data) {
-			var HTML = '';
-			//--img--
-			HTML += '<div style="padding:15px; border-style:solid none dotted;border-width:3px 0;border-color:#fff;"><img src="'+data.path+'" style="width:100%;"></div>';
-			//--info--
-			HTML += '<ul style="padding:15px; border-style:solid;border-width:0 0 3px;border-color:#fff;">';
-			HTML += '<li>投稿日時：'+data.time+'</li>';
-			HTML += '<li>Good!：'+data.good_cnt+'件♡</li>';
-			HTML += '<li>コメント件数：'+data.com_cnt+'件</li>';
-			HTML += '</ul>';
-			//--comment--
-			HTML += '<div id="photoComments" style="padding:15px;">';
-			HTML += '<h3 style="padding:5px 0;">コメント一覧</h3>';
-			HTML += '<ul>';
-			for(var i = 0; i < data.com_cnt; i++) {
-				HTML += '<li>';
-				HTML += '<ul>';
-				HTML += '<li>ニックネーム：'+data.comments[i].com_name+'</li>';
-				HTML += '<li>コメント投稿日時：'+data.comments[i].com_time+'</li>';
-				HTML += '<li>'+data.comments[i].comment+'</li>';
-				HTML += '</ul>';
-				HTML += '</li>';
-			}
-			HTML += '</ul>';
-			HTML += '</div>';
-
-			$('div#modalWindow > div#modalContent').html(HTML);
-			$('body').css({overflow: 'hidden'});
-			$('div#modalWindow').fadeIn('fast', function() {
-			});
-			$('div#modalHeader').css({height: $('div#modalHeader > a').outerHeight() + 'px'});
-		}
-		function closeModal() {
-			$('div#modalWindow').fadeOut('fast');
-			$('body').css({overflow: 'auto'});
-		}
 		$(function() {
 			$('table#stampList > tbody > tr > td').css({height: $('table#stampList > tbody > tr > td').width() + 'px'});
 			// Mapの高さ指定
