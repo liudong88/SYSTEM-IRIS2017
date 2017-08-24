@@ -148,7 +148,7 @@ if(tmpCnt != 0) {
 			<ul>
 				<li class="camera_nav"><a href="share_photos.jsp"><img
 						src="images/photo_button.png" /></a></li>
-				<li class="collage_nav"><a href="./StampServlet"><img
+				<li class="collage_nav"><a><img
 						src="images/stamp_current_button.png" /></a></li>
 				<li class="add_nav"><a href="photoUpload.jsp"><img
 						src="images/add_button.png" /></a></li>

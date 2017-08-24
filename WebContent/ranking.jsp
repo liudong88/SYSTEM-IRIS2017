@@ -128,7 +128,7 @@ if(nowSpotID.isEmpty()) {
 						src="images/stamp_button.png" /></a></li>
 				<li class="add_nav"><a href="photoUpload.jsp"><img
 						src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="./RankingServlet"><img
+				<li class="information_nav"><a><img
 						src="images/rank_current_button.png" /></a></li>
 				<li class="user_nav"><a href="./UserServlet"><img
 						src="images/profile_button.png" /></a></li>

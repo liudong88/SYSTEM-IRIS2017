@@ -48,7 +48,7 @@
 						src="images/photo_button.png" /></a></li>
 				<li class="collage_nav"><a href="./StampServlet"><img
 						src="images/stamp_button.png" /></a></li>
-				<li class="add_nav"><a href="photoUpload.jsp"><img
+				<li class="add_nav"><a><img
 						src="images/add_current_button.png" /></a></li>
 				<li class="information_nav"><a href="./RankingServlet"><img
 						src="images/rank_button.png" /></a></li>

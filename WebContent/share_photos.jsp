@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<html>
+<%
+	String user_name = (String)request.getAttribute("");
+%>
+<html lang="ja">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="css/reset.css">
-	<!-- <link rel="stylesheet" href="css/common.css"> -->
+	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/photos_design.css">
-	<link rel="stylesheet" href="css/test_style.css">
-	<link rel="stylesheet" href="css/context_menu.css">
 	<link rel="stylesheet" href="css/comment_modal.css">
+	<link rel="stylesheet" href="css/userGood.css">
 
 	<!-- font-awesome用CSS -->
 	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
@@ -19,6 +21,7 @@
 	<script src="js/jquery-context-menu.min.js"></script>
 	<script src="js/modal-fix.js"></script>
 	<script src="js/comment-modal.js"></script>
+	<script src="js/userGood.js"></script>
 	<title></title>
 
 	<script>
@@ -27,24 +30,7 @@
 	</script>
 
 	<script>
-		// ポップアップメニュー表示
-		// $(function(){
-		// 	--context_menu implementation
-		// 	var x = new _contextMenu();
-		// 	x.config({
-		// 		contextBoxClass : 'context-box',
-		// 		clickedOnClass : 'trigger_context_menu',
-		// 		closeBtnClass : 'close-btn',
-		// 		popupBesideClass : 'className',
-		// 		disableErrorLog: true,
-		// 		box_position : 'bot-right',
-		// 		displacement_px : [-140,2]
-		// 	})
-		// 	x.run();
-		// });
-	</script>
 
-	<script>
 		$(document).on("submit","#com-form",function(evt){
 			evt.preventDefault();
 			console.log('confirm');
@@ -53,7 +39,6 @@
 				$.ajax({
 					url:$('#com-form').attr('action'),
 					type:$('#com-form').attr('method'),
-					data:$('')
 				}).then(
 					function(){
 						console.log('success');
@@ -62,6 +47,7 @@
 						$("#comment-modal,#modal-overlay").fadeOut("slow",function(){
 						//フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
 							$("#modal-overlay").remove();
+							$("#id_input").remove();
 						});
 					},
 					function(){
@@ -70,163 +56,32 @@
 				)
 			}
 		})
+		// .done(
+		// 	$.ajax({
+		// 		url:$('#com-form').attr('action'),
+		// 		type:$('#com-form').attr('method'),
+		// 		data:$('')
+		// 	}).then(
+		// 		function(){
+		// 			console.log('success');
+		// 			alert('投稿が完了しました!');
+		// 			console.log('delete');
+		// 			$("#comment-modal,#modal-overlay").fadeOut("slow",function(){
+		// 			//フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
+		// 				$("#modal-overlay").remove();
+		// 			});
+		// 		},
+		// 		function(){
+		// 			console.log('failed');
+		// 		}
+		// 	)
+		// ).fail(
+
+		// )
 	</script>
-
 	<script>
-		var photo_id = 1;
-		var good_flag = true;
-		var icon_tag = '#like-icon'+photo_id;
-
-		$(document).on('click',"#like-icon",function(){
-			if(good_flag === true){
-				$(icon_tag).css('color','pink');
-			}else{
-				$(icon_tag).css('color','gray');
-			}
-
-			$.ajax({
-				url: './PhotoGoodSurvlet',
-				type:'post',
-				data:''
-			}).then(
-				function(){
-					console.log('success');
-					if($(icon_tag).attr('color','gray')){
-						$(icon_tag).css('color','pink');
-						console.log('change:pink');
-					}else if($(icon_tag).attr('color','pink')){
-						$(icon_tag).css('color','gray');
-						console.log('change:gray');
-					}
-				},
-				function(){
-					console.log('failed');
-				}
-			)
-		})
-	</script>
-
-	<script>
-
 		var view ="";
 		var min_id ="";
-
-		/*var jsonObject = {
-			"photo":[
-				{
-					"photo_id":"4",
-					"path":"1_20170819193036312.png",
-					"latitude":"35.111111",
-					"longitude":"135.222222",
-					"user":"ben",
-					"time":"2017-08-19 19:30:36.0",
-					"explanation":"Testttt",
-					"good_cnt":"0",
-					"com_cnt":"0",
-					"user_good":"false",
-					"comments":[]
-				},
-				{
-					"photo_id":"3",
-					"path":"1_20170819193002156.jpeg",
-					"latitude":"35.111111",
-					"longitude":"135.222222",
-					"user":"タロウ",
-					"time":"2017-08-19 19:30:02.0",
-					"explanation":"Testttt",
-					"good_cnt":"1",
-					"com_cnt":"2",
-					"user_good":"false",
-					"comments":[
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 01:35:11.0",
-							"comment":"コメントコメント"
-						},
-						{
-							"com_name":"タロウ",
-							"com_time":"2017-08-21 01:28:17.0",
-							"comment":"コメントコメントコメント"
-						}
-					]
-				},
-				{
-					"photo_id":"2",
-					"path":"1_20170819192517678.png",
-					"latitude":"35.111111",
-					"longitude":"135.222222",
-					"user": "daniel",
-					"time":"2017-08-19 19:25:18.0",
-					"explanation":"Testttt",
-					"good_cnt":"0",
-					"com_cnt":"1",
-					"user_good":"false",
-					"comments":[
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:20.0",
-							"comment":"コメント"
-						},
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						},
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						}
-					]
-				},
-				{
-					"photo_id":"1",
-					"path":"15029397690141063822137.jpg",
-					"latitude":"35.111111",
-					"longitude":"135.222222",
-					"user":"タロウ",
-					"time":"2017-08-17 12:38:57.0",
-					"explanation":"Testttt",
-					"good_cnt":"0",
-					"com_cnt":"1",
-					"user_good":"false",
-					"comments":[
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						},
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						},
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						},
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						},
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						},
-						{
-							"com_name":"ハナコ",
-							"com_time":"2017-08-21 02:30:30.0",
-							"comment":"コメント"
-						}
-					]
-				}
-			],
-			"min_id":"1"
-		}*/
-
 		$(function(){
 			view = "";
 			$.ajax({
@@ -242,71 +97,61 @@
 					$.ajaxSetup({async:true});
 					var json_length = jsonObject['photo'].length;
 					for(var i=0;i<json_length;i++){
+						setUserGood();
 						var json_com_len = jsonObject['photo'][i]['comments'].length;
 						console.log(i+':loop_main');
 						view += '<section class="photo-view">'
-							+'<div class="photo-header">'
-								+'<div class="account-name">'
-									+'<p>'+jsonObject['photo'][i]['user']+'</p>'
-								+'</div>'
-								+'<div class="menu-trigger">'
-									+'<a href="#" class="trigger_context_menu">'
-										+'<span class="icon-menu">'
-											+'<i class="fa fa-bars" aria-hidden="true"></i>'
-										+'</span>'
-									+'</a>'
-								+'</div>'
-							+'</div>'
-							+'<hr>'
 							+'<div class="main-img">'
-								+'<img class="preview-img" src="'+jsonObject['photo'][i]['path']+'" alt="dummy">'
+								+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
 							+'</div>'
-							+'<hr>'
+							+'<ul class="user-info">'
+								+'<li class="com-user">'+jsonObject['photo'][i]['user']+'</li>'
+								+'<li class="com-main">'+jsonObject['photo'][i]['explanation']+'</li>'
+								+'<li class="com-date">'+jsonObject['photo'][i]['time']+'</li>'
+							+'</ul>'
 							+'<div id="details">'
-								+'<span>投稿日時：'+jsonObject['photo'][i]['time']+'</span><br>'
-								+'<span>good!：'+jsonObject['photo'][i]['good_cnt']+'件</span>'
-								+'<i class="fa fa-heart-o" aria-hidden="true"></i><br>'
-								+'<span>コメント件数：'+jsonObject['photo'][i]['com_cnt']+'件</span><br>'
-								+'<hr class="horizon">'
-								+'<span>コメント一覧</span><br>'
-								+'<div id="com-preview">';
-								for(var j=0;j<json_com_len;j++){
-									//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
-									var now_loop = j+1;
-									if((now_loop%2)==0){
-										//console.log('in:'+[j]);
-										view += '<div class="content">';
-											view += '<p>ニックネーム：'+jsonObject['photo'][i]['comments'][j]['com_name']+'</p>';
-											view += '<p>コメント投稿日時：'+jsonObject['photo'][i]['comments'][j]['com_time']+'</p>';
-											view += '<p>'+jsonObject['photo'][i]['comments'][j]['comment']+'</p>';
-										view += '</div>';
-										//console.log('in loop2:'+[j]);
-										view += '</div><div class="more">もっと見る</div>';
-									}else{
-										view += '<div class="content">';
-										view += '<div class="com-inner">';
-											view += '<p>ニックネーム：'+jsonObject['photo'][i]['comments'][j]['com_name']+'</p>';
-											view += '<p>コメント投稿日時：'+jsonObject['photo'][i]['comments'][j]['com_time']+'</p>';
-											view += '<p>'+jsonObject['photo'][i]['comments'][j]['comment']+'</p>';
-										view += '</div>';
-									}
+								+'<span style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
+								+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
+								+'<ul id="com-preview">';
+						for(var j=0;j<json_com_len;j++){
+							//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
+							var now_loop = j+1;
+							if((now_loop%2)==0){
+								//console.log('in:'+[j]);
+								view += '<li class="com-inner">';
+									view += '<ul>'
+										view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+										view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
+									view += '</ul>'
+								view += '</li>';
+								//console.log('in loop2:'+[j]);
+								if(j != (json_com_len-1)){
+									view += '</ul><div class="more">もっと見る</div>';
 								}
-						view += '</div>'
-								+'<a href="#" id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">open</a>'
+							}else{
+								view += '<ul class="content">';
+								view += '<ul class="com-inner">';
+									view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+									view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
+								view += '</ul>';
+							}
+						}
+						view += '</ul>'
+							+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
 							+'</div>'
 						+'</section>';
 						//console.log(i);
 					}
-					if(json_length != 0){
-						view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-					}
+					// if(json_length != 0){
+					// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
+					// }
 					//console.log(view);
 					$("#photo-area").append(view);
 				}
 			)
 		})
-
-
 		function moreContent(){
 			view ="";
 			$.ajax({
@@ -321,63 +166,54 @@
 					$.ajaxSetup({async:true});
 					var json_length = jsonObject['photo'].length;
 					for(var i=0;i<json_length;i++){
-						console.log(i+':loop-more');
+						setUserGood();
 						var json_com_len = jsonObject['photo'][i]['comments'].length;
-						//console.log(jsonObject['photo'][i]['comments']+"mesあああ");
 						view += '<section class="photo-view">'
-							+'<div class="photo-header">'
-								+'<div class="account-name">'
-									+'<p>'+jsonObject['photo'][i]['user']+'</p>'
-								+'</div>'
-								+'<div class="menu-trigger">'
-
-									+'<a href="#" class="trigger_context_menu">'
-										+'<span class="icon-menu">'
-											+'<i class="fa fa-bars" aria-hidden="true"></i>'
-										+'</span>'
-									+'</a>'
-								+'</div>'
-							+'</div>'
-							+'<hr>'
 							+'<div class="main-img">'
-								+'<img class="preview-img" src="'+jsonObject['photo'][i]['path']+'" alt="img">'
+								+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
 							+'</div>'
-							+'<hr class="horizon">'
+							+'<ul class="user-info">'
+								+'<li class="com-user">User:'+jsonObject['photo'][i]['user']+'</li>'
+								+'<li class="com-main">'+jsonObject['photo'][i]['explanation']+'</li>'
+								+'<li class="com-date">Date'+jsonObject['photo'][i]['time']+'</li>'
+							+'</ul>'
 							+'<div id="details">'
-								+'<span>投稿日時：'+jsonObject['photo'][i]['time']+'</span><br>'
-								+'<span>good!：'+jsonObject['photo'][i]['good_cnt']+'件</span>'
-								+'<i class="fa fa-heart-o" aria-hidden="true"></i><br>'
-								+'<span>コメント件数：'+jsonObject['photo'][i]['com_cnt']+'件</span><br>'
-								+'<div id="com-preview">'
-									for(var j=0;j<json_com_len;j++){
-										//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
-										var now_loop = j+1;
-										if((now_loop%2)==0){
-											//console.log('in:'+[j]);
-											view += '<div class="com-inner">';
-												view += '<p>ニックネーム：'+jsonObject['photo'][i]['comments'][j]['com_name']+'</p>';
-												view += '<p>コメント投稿日時：'+jsonObject['photo'][i]['comments'][j]['com_time']+'</p>';
-												view += '<p>'+jsonObject['photo'][i]['comments'][j]['comment']+'</p>';
-											view += '</div>';
-											//console.log('in loop2:'+[j]);
-											view += '</div><div class="more">もっと見る</div>';
-										}else{
-											view += '<div class="content">';
-												view += '<div class="com-inner">';
-													view += '<p>ニックネーム：'+jsonObject['photo'][i]['comments'][j]['com_name']+'</p>';
-													view += '<p>コメント投稿日時：'+jsonObject['photo'][i]['comments'][j]['com_time']+'</p>';
-													view += '<p>'+jsonObject['photo'][i]['comments'][j]['comment']+'</p>';
-												view += '</div>';
-										}
-									}
-						view += '</div>'
-								+'<a href="#" id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">open</a>'
+								+'<span  style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
+								+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
+								+'<ul id="com-preview">'
+						for(var j=0;j<json_com_len;j++){
+							//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
+							var now_loop = j+1;
+							if((now_loop%2)==0){
+								//console.log('in:'+[j]);
+								view += '<li class="com-inner">';
+									view += '<ul class="com-inner">'
+										view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+										view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
+									view += '</ul>'
+								view += '</li>';
+								//console.log('in loop2:'+[j]);
+								if(j != (json_com_len-1)){
+									view += '</ul><div class="more">もっと見る</div>';
+								}
+							}else{
+								view += '<ul class="content">';
+								view += '<ul class="com-inner">';
+									view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
+									view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
+									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
+								view += '</ul>';
+							}
+						}
+						view += '</ul>'
+								+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する　<i class="fa fa-pencil" aria-hidden="true"></i></a>'
 							+'</div>'
 						+'</section>';
 					}
-					if(json_length != 0){
-						view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-					}
+					// if(json_length != 0){
+					// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
+					// }
 					$("#photo-area").append(view);
 				}
 			)
@@ -413,15 +249,18 @@
 </head>
 <body>
 	<div id="wrapper-main">
+
 		<div id="comment-modal">
-			<form action="" id="com-form">
+			<form action="./PhotoCommenServlet" method="post" id="com-form">
 				<p id="dest-user"></p>
-				<input type="text" name="com-title"><br>
-				<textarea name="comment" id="" cols="30" rows="10"></textarea><br>
+				<span>コメント</span> <br>
+				<textarea name="p_comment" id="" cols="30" rows="10" class="com-modal-mes"></textarea><br>
 				<button name="button" type="submit">投稿確認</button>
-			</form>
-			<a href="#" id="modal-close">close</a>
+			</form><br>
+			<a id="modal-close">close</a>
 		</div>
+		<!-- ヘッダー -->
+
 		<header>
 			<div id="logo">
 				<img src="images/logo.png" />
@@ -433,34 +272,21 @@
 		<article id="photo-area">
 
 		</article>
-		<!-- <footer>
-			<ul class="nav">
-				<li class="camera_nav"><a href="share_photos.jsp"><img
-						src="images/photo_button.png" /></a></li>
+		<div class="more-button-area"><a href="#" id="more-button" onclick="moreContent(); moreContentReload();">さらに表示</a></div>
+		<!-- フッター -->
+		<footer>
+			<ul>
+				<li class="camera_nav"><a><img
+						src="images/photo_current_button.png" /></a></li>
 				<li class="collage_nav"><a href="./StampServlet"><img
 						src="images/stamp_button.png" /></a></li>
 				<li class="add_nav"><a href="photoUpload.jsp"><img
 						src="images/add_button.png" /></a></li>
 				<li class="information_nav"><a href="./RankingServlet"><img
-						src="images/infomation_button.png" /></a></li>
+						src="images/rank_button.png" /></a></li>
 				<li class="user_nav"><a href="./UserServlet"><img
 						src="images/profile_button.png" /></a></li>
 			</ul>
-		</footer> -->
-		<footer>
-			<ul class="nav">
-				<li class="camera_nav"><a href="share_photos.jsp"><img class="nav-img"
-						src="images/photo_current_button.png" /></a></li>
-				<li class="collage_nav"><a href="./StampServlet"><img class="nav-img"
-						src="images/stamp_button.png" /></a></li>
-				<li class="add_nav"><a href="photoUpload.jsp"><img class="nav-img"
-						src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="./RankingServlet"><img class="nav-img"
-						src="images/rank_button.png" /></a></li>
-				<li class="user_nav"><a href="./UserServlet"><img class="nav-img"
-						src="images/profile_button.png" /></a></li>
-			</ul>
-			<!-- <button type="button" name="scroll">scroll to top</button> -->
 		</footer>
 	</div>
 <body>

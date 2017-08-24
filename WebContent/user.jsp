@@ -87,7 +87,7 @@ if(tmpCnt != 0) {
 						src="images/add_button.png" /></a></li>
 				<li class="information_nav"><a href="./RankingServlet"><img
 						src="images/rank_button.png" /></a></li>
-				<li class="user_nav"><a href="./UserServlet"><img
+				<li class="user_nav"><a><img
 						src="images/profile_current_button.png" /></a></li>
 			</ul>
 		</footer>
