@@ -79,11 +79,11 @@ if(tmpCnt != 0) {
 			HTML += '<li>コメント件数：'+data.com_cnt+'件</li>';
 			HTML += '</ul>';
 			//--comment--
-			HTML += '<div style="padding:15px;">';
+			HTML += '<div id="photoComments" style="padding:15px;">';
 			HTML += '<h3 style="padding:5px 0;">コメント一覧</h3>';
-			HTML += '<ul style="padding:0 0 0 15px;">';
+			HTML += '<ul>';
 			for(var i = 0; i < data.com_cnt; i++) {
-				HTML += '<li style="padding:15px 0;">';
+				HTML += '<li>';
 				HTML += '<ul>';
 				HTML += '<li>ニックネーム：'+data.comments[i].com_name+'</li>';
 				HTML += '<li>コメント投稿日時：'+data.comments[i].com_time+'</li>';

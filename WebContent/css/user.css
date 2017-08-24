@@ -26,6 +26,7 @@ div#modalWindow {
 	height: 100%;
 	z-index: 10;
 	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 }
 div#modalHeader {
 	padding: 5px;
@@ -41,4 +42,12 @@ div#modalHeader > a {
 	background-color: #fff;
 	color: #7caeff;
 	text-decoration: none;
+}
+div#modalContent > div#photoComments > ul > li {
+	padding: 10px;
+	margin: 5px;
+	border-style: dotted;
+	border-color: #fff;
+	border-width: 2px;
+	border-radius: 10px/10px;
 }
