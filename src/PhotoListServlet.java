@@ -59,7 +59,7 @@ public class PhotoListServlet extends HttpServlet {
 		String sql = "";
 
 		//写真の情報を取得するSQL
-		sql = "SELECT p.photo_id,file_path,latitude,longitude,user_name,photo_post_time,photo_explanation,"
+		sql = "SELECT p.photo_id,file_path,latitude,longitude,user_name,DATE_FORMAT(photo_post_time,'%Y年%m月%d日 %k:%i') AS photo_post_time,photo_explanation,"
 				+ "CASE WHEN good.good_cnt IS NULL THEN 0 ELSE good.good_cnt END AS g_cnt,"
 				+ "CASE WHEN com.com_cnt IS NULL THEN 0 ELSE com.com_cnt END AS c_cnt,"
 				+ "CASE WHEN gbool.bool IS NULL THEN 'false' WHEN gbool.bool = 0 THEN 'false' WHEN gbool.bool = 1 THEN 'true' else 'error' END AS user_good "
@@ -110,7 +110,7 @@ public class PhotoListServlet extends HttpServlet {
 		}
 
 		//コメントを取得するSQL
-		sql = "SELECT photo_id,user_name,photo_comment_time,photo_comment FROM photo_comments,users "
+		sql = "SELECT photo_id,user_name,DATE_FORMAT(photo_comment_time,'%Y年%m月%d日 %k:%i') AS photo_comment_time,photo_comment FROM photo_comments,users "
 				+ "WHERE photo_comments.user_id = users.user_id "
 				+ "AND photo_id IN(";
 		int cnt = 0;
