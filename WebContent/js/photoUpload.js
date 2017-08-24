@@ -21,7 +21,7 @@ $(function(){
             } else {
                 if(file.type.match('image.*')){
                     if(!(0 < selfImg.size())){
-                        selfFile.append('<img alt="" class="imgView">');
+                        selfFile.append('<p class="imgView">写真プレビュー</p><img alt="" class="imgView">');
                     }
                     var prevElm = selfFile.find('.imgView');
                     fileRdr.onload = function() {

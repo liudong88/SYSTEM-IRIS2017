@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-html,body,#top_page_wrapper,session,form,.imgInput{
+html,body,#top_page_wrapper,session,form,#target_id,.imgInput{
 	width:100%;
 	max-width:480px;
 }
@@ -14,11 +14,25 @@ html,body,#top_page_wrapper,session,form,.imgInput{
 }
 
 .imgInput label{
-	width:90%;
+	width:95%;
 	height:50px;
 	line-height:50px;
 	margin:0 auto;
 	text-align:center;
 	background-color:red;
 	display:block;
+}
+
+textarea {
+	width:95%;
+	height:50px;
+	box-sizing:border-box;
+	margin:0 auto;
+	display:block;
+    resize: none;
+}
+
+p{
+	width:95%;
+	margin:0 auto;
 }

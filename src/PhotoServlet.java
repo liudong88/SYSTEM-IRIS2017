@@ -180,6 +180,7 @@ public class PhotoServlet extends HttpServlet {
 				}
 			}
 			System.out.println("OK");
+			response.sendRedirect("share_photos.jsp");
 		}
 	}
 
