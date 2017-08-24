@@ -46,17 +46,19 @@ public class PhotoCommentServlet extends HttpServlet {
 		LoginCheck lc = new LoginCheck();
 		String strUserId = lc.LogCheck(request, response);
 
-		String strPhotoId = request.getParameter("photo_id");
-		String strComment = request.getParameter("p_comment");
+		if(!strUserId.equals("false")){
+			String strPhotoId = request.getParameter("photo_id");
+			String strComment = request.getParameter("p_comment");
 
-		DatabaseAccess dba = new DatabaseAccess();
+			DatabaseAccess dba = new DatabaseAccess();
 
-		String sql = "INSERT INTO photo_comments("
-				+ "photo_id,user_id,photo_comment)VALUES("
-				+ strPhotoId + "," + strUserId + ",'" + strComment + "');";
-		dba.Connect();
-		dba.Update(sql);
-		dba.Close();
+			String sql = "INSERT INTO photo_comments("
+					+ "photo_id,user_id,photo_comment)VALUES("
+					+ strPhotoId + "," + strUserId + ",'" + strComment + "');";
+			dba.Connect();
+			dba.Update(sql);
+			dba.Close();
+		}
 	}
 
 }

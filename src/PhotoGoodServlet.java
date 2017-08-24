@@ -46,26 +46,28 @@ public class PhotoGoodServlet extends HttpServlet {
 		LoginCheck lc = new LoginCheck();
 		String strUserId = lc.LogCheck(request, response);
 
-		String strPhotoId = request.getParameter("photo_id");
-		String strSignal = request.getParameter("signal");
+		if(!strUserId.equals("false")){
+			String strPhotoId = request.getParameter("photo_id");
+			String strSignal = request.getParameter("signal");
 
-		if(strSignal.equals("good")){//いいねが押された場合
-			DatabaseAccess dba = new DatabaseAccess();
+			if(strSignal.equals("good")){//いいねが押された場合
+				DatabaseAccess dba = new DatabaseAccess();
 
-			String sql = "INSERT INTO photo_good("
-					+ "photo_id,user_id)VALUES("
-					+ strPhotoId + "," + strUserId + ");";
-			dba.Connect();
-			dba.Update(sql);
-			dba.Close();
-		}else if(strSignal.equals("cancel")){//いいねを解除する場合
-			DatabaseAccess dba = new DatabaseAccess();
-			String sql = "DELETE FROM photo_good "
-					+ "WHERE photo_id = " + strPhotoId + " "
-					+ "AND user_id = " + strUserId + ";";
-			dba.Connect();
-			dba.Update(sql);
-			dba.Close();
+				String sql = "INSERT INTO photo_good("
+						+ "photo_id,user_id)VALUES("
+						+ strPhotoId + "," + strUserId + ");";
+				dba.Connect();
+				dba.Update(sql);
+				dba.Close();
+			}else if(strSignal.equals("cancel")){//いいねを解除する場合
+				DatabaseAccess dba = new DatabaseAccess();
+				String sql = "DELETE FROM photo_good "
+						+ "WHERE photo_id = " + strPhotoId + " "
+						+ "AND user_id = " + strUserId + ";";
+				dba.Connect();
+				dba.Update(sql);
+				dba.Close();
+			}
 		}
 	}
 

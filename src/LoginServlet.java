@@ -110,7 +110,7 @@ public class LoginServlet extends HttpServlet {
 				}
 				//入力されたユーザー名とパスワードがユーザー登録されているものと一致した時の処理
 				if(username.equals(db_username) && pass.equals(db_userpass)){
-					strJspName = "/share_photos.jsp";
+					strJspName = "SharePhotos";
 				}else{
 					errormessage = "※ユーザー名またはパスワードが正しくありません。もう一度入力してください。";
 					strJspName = "/index.jsp";

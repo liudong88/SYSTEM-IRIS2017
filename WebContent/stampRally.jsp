@@ -146,7 +146,7 @@ if(tmpCnt != 0) {
 		<!-- フッター -->
 		<footer>
 			<ul>
-				<li class="camera_nav"><a href="share_photos.jsp"><img
+				<li class="camera_nav"><a href="./SharePhotos"><img
 						src="images/photo_button.png" /></a></li>
 				<li class="collage_nav"><a><img
 						src="images/stamp_current_button.png" /></a></li>

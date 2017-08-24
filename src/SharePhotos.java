@@ -3,7 +3,6 @@
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,16 +15,16 @@ import hacku2017.DatabaseAccess;
 import hacku2017.LoginCheck;
 
 /**
- * Servlet implementation class UserServlet
+ * Servlet implementation class SharePhotos
  */
-@WebServlet("/UserServlet")
-public class UserServlet extends HttpServlet {
+@WebServlet("/SharePhotos")
+public class SharePhotos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserServlet() {
+    public SharePhotos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,30 +38,22 @@ public class UserServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-		//インスタンスの生成
 		LoginCheck lc = new LoginCheck();
 
 		String strUserId = lc.LogCheck(request, response);
 
 		if(!strUserId.equals("false")){
 			DatabaseAccess dba = new DatabaseAccess();
-			String sql = "";
-			//写真の情報を取得するSQL
-			sql = "SELECT photo_id,file_path "
-					+ "FROM photos ";
-			sql += "WHERE user_id = " + strUserId+ " ";
-			sql += "ORDER BY photo_id DESC;";
-			System.out.println(sql);
 
+			String sql = "SELECT user_name FROM users "
+					+ "WHERE user_id = " + strUserId + ";";
 			ResultSet rs = null;
-
-			ArrayList<String[]> tbl = new ArrayList<String[]>();
+			String strUserName = "";
 			try{
 				dba.Connect();
 				rs = dba.Select(sql);
 				while(rs.next()){
-					String[] rec = {rs.getString("photo_id"), "./upload/small/" + rs.getString("file_path")};
-					tbl.add(rec);
+					strUserName = rs.getString("user_name");
 				}
 			}catch (SQLException e) {
 				// TODO: handle exception
@@ -77,31 +68,8 @@ public class UserServlet extends HttpServlet {
 				dba.Close();
 			}
 
-			rs = null;
-			sql = "SELECT user_name FROM users WHERE user_id = " + strUserId + "";
-			String userName = "";
-			try{
-				dba.Connect();
-				rs = dba.Select(sql);
-				while(rs.next()){
-					userName = rs.getString("user_name");
-				}
-			}catch (SQLException e) {
-				// TODO: handle exception
-			}finally{
-				if(rs != null){
-					try {
-						rs.close();
-					} catch (SQLException e) {
-						// TODO: handle exception
-					}
-				}
-				dba.Close();
-			}
-
-			request.setAttribute("IMAGES", tbl);
-			request.setAttribute("USERNAME", userName);
-			RequestDispatcher rd = request.getRequestDispatcher("user.jsp");
+			request.setAttribute("USER", strUserName);
+			RequestDispatcher rd = request.getRequestDispatcher("share_photos.jsp");
 			rd.forward(request, response);
 		}
 	}
