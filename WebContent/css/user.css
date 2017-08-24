@@ -1,53 +1,43 @@
 @CHARSET "UTF-8";
+section {
+	margin: 10px;
+	padding: 10px;
+	background-color: #fff;
+	border-style: solid;
+	border-width: 0; 
+	border-color: #0015b2;
+	border-radius: 10px/10px;
+	overflow: hidden;
+}
 h1#userName {
-	padding: 15px;
-	text-align: right;
+	padding: 0 0 5px;
 	font-size: 125%;
-	color: #ccc;
+	color: #0015b2;
+	border-style: solid;
+	border-width: 0 0 1px; 
+	border-color: #0015b2;
+}
+h1#userName > img {
+	width: 40px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px; 
+	border-color: #ccc;
+	border-radius: 20px/20px;
+	overflow: hidden;
 }
 table#myImg {
 	width: 100%;
 	table-layout: fixed;
 	border-collapse: separate;
-	border-spacing: 2px;
+	border-spacing: 5px;
 	
 }
 table#myImg > tbody > tr > td > a > img {
 	width: 100%;
-}
-/*--modal--*/
-div#modalWindow {
-	display: none;
-	position: fixed;
-	background-color: #7caeff;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10;
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-}
-div#modalHeader {
-	padding: 5px;
+	border-style: solid;
+	border-width: 0; 
+	border-color: #0015b2;
+	border-radius: 5px/5px;
 	overflow: hidden;
-}
-div#modalHeader > a {
-	display: block;
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	padding: 5px;
-	font-weight: bold;
-	background-color: #fff;
-	color: #7caeff;
-	text-decoration: none;
-}
-div#modalContent > div#photoComments > ul > li {
-	padding: 10px;
-	margin: 5px;
-	border-style: dotted;
-	border-color: #fff;
-	border-width: 2px;
-	border-radius: 10px/10px;
 }

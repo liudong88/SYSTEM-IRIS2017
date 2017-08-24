@@ -14,11 +14,13 @@ body {
 	position: relative;
 	overflow: hidden auto;
 	margin: 0 0 60px;
+	background-color: #ffffb7;
 }
 header {
 	height: 60px;
 	width: 100%;
 	max-width: 480px;
+	background-color: #fff;
 }
 div#logo > img {
 	height: 60px;
