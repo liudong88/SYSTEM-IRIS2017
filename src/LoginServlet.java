@@ -18,14 +18,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginCheck
  */
-@WebServlet("/LoginCheck")
-public class LoginCheck extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginCheck() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -110,10 +110,10 @@ public class LoginCheck extends HttpServlet {
 				}
 				//入力されたユーザー名とパスワードがユーザー登録されているものと一致した時の処理
 				if(username.equals(db_username) && pass.equals(db_userpass)){
-					strJspName = "/logindone.jsp";
+					strJspName = "/share_photos.jsp";
 				}else{
 					errormessage = "※ユーザー名またはパスワードが正しくありません。もう一度入力してください。";
-					strJspName = "/userlogin.jsp";
+					strJspName = "/index.jsp";
 				}
 			}else{
 				//ユーザ名が入力されていない時の処理
@@ -124,7 +124,7 @@ public class LoginCheck extends HttpServlet {
 				if(pass.equals("")){
 					errormessage = errormessage +"※パスワードは必ず入力してください。";
 				}
-				strJspName = "/userlogin.jsp";
+				strJspName = "/index.jsp";
 			}
 
 		}catch (ClassNotFoundException e) {
@@ -151,7 +151,7 @@ public class LoginCheck extends HttpServlet {
 		}
 		// セッションスコープに登録ユーザーを保存
 		HttpSession session = request.getSession();
-		session.setAttribute("USER_ID", user_id);
+		session.setAttribute("user", user_id);
 		session.setAttribute("login","true");
 
 		request.setAttribute("MESSAGE", errormessage);

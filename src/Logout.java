@@ -39,7 +39,7 @@ public class Logout extends HttpServlet {
 		session = request.getSession(false);
 		//セッションがnullの時の処理
 		if(session == null){
-			strJspName = "/userlogin.jsp";
+			strJspName = "/index.jsp";
 			System.out.println("セッションは破棄されました。");
 		}
 

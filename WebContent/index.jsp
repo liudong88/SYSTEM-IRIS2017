@@ -25,7 +25,7 @@
 			<section></section>
 			<article>
 				<div class="login">
-				  <form class="login-container" action = "./LoginCheck"  method = "GET">
+				  <form class="login-container" action = "./LoginServlet"  method = "post">
 				    <p><input type = "text" name ="username"  placeholder="UserName"></p>
 				    <p><input type="password" name="pass" placeholder="Password"></p>
 				    <p><input type="submit" name ="sb" value="Log in"></p>

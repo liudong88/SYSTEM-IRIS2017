@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h1>ログイン画面</h1>
-	<form action = "./LoginCheck" method = "post">
+	<form action = "./LoginServlet" method = "post">
 		ユーザー名<input type = "text" name = username><br>
 		パスワード<input type = "text" name = pass><br>
 		<input type = "submit" name = "sb" value = "ログイン">
