@@ -31,8 +31,8 @@
 						<input type="file" name="filename" id="inputphoto" size="50" accept="image/jpeg,image/png">
 						<label for="inputphoto" id="filebutton">写真を選択する</label>
 					</div>
-					<input type="hidden" name="lat" id="lat">
-					<input type="hidden" name="lng" id="lng">
+					<input type="hidden" name="lat" id="lat" value="34.706317">
+					<input type="hidden" name="lng" id="lng" value="135.501079">
 					<p>写真説明</p>
 					<textarea name="text"></textarea>
 				</div>

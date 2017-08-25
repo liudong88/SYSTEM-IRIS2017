@@ -41,7 +41,7 @@ $(function(){
         });
 	});
 });
-
+/*
 $('#filebutton').click(function(){
 	// 現在地を取得
 	navigator.geolocation.getCurrentPosition(
@@ -68,4 +68,4 @@ $('#filebutton').click(function(){
 	    	}
 	    }
 	);
-});
+});*/
