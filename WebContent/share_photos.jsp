@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String user_name = (String)request.getAttribute("USER");
+	//ユーザー名を取得
+	String user_name = (String)request.getAttribute("");
 %>
 <html lang="ja">
 <head>
@@ -18,19 +19,11 @@
 	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/jquery-context-menu.min.js"></script>
-	<script src="js/modal-fix.js"></script>
 	<script src="js/comment-modal.js"></script>
 	<script src="js/userGood.js"></script>
-	<title></title>
+	<title>投稿写真一覧</title>
 
 	<script>
-		//jQuery動作確認
-		//$(function(){console.log('jq_activate')})
-	</script>
-
-	<script>
-
 		$(document).on("submit","#com-form",function(evt){
 			evt.preventDefault();
 			console.log('confirm');
@@ -56,37 +49,17 @@
 				)
 			}
 		})
-		// .done(
-		// 	$.ajax({
-		// 		url:$('#com-form').attr('action'),
-		// 		type:$('#com-form').attr('method'),
-		// 		data:$('')
-		// 	}).then(
-		// 		function(){
-		// 			console.log('success');
-		// 			alert('投稿が完了しました!');
-		// 			console.log('delete');
-		// 			$("#comment-modal,#modal-overlay").fadeOut("slow",function(){
-		// 			//フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
-		// 				$("#modal-overlay").remove();
-		// 			});
-		// 		},
-		// 		function(){
-		// 			console.log('failed');
-		// 		}
-		// 	)
-		// ).fail(
-
-		// )
 	</script>
+
 	<script>
 		var view ="";
 		var min_id ="";
+
 		$(function(){
 			view = "";
 			$.ajax({
 				url:"./PhotoListServlet", //初回パラメータなし
-				type: 'post',
+				type: 'get',
 				datatype: 'json',
 				async: 'false',
 			}).then(
@@ -102,7 +75,7 @@
 						console.log(i+':loop_main');
 						view += '<section class="photo-view">'
 							+'<div class="main-img">'
-								+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
+								+'<img class="preview-img" src='+jsonObject['photo'][i]['path']+' alt="image">'
 							+'</div>'
 							+'<ul class="user-info">'
 								+'<li class="com-user">'+jsonObject['photo'][i]['user']+'</li>'
@@ -139,24 +112,23 @@
 							}
 						}
 						view += '</ul>'
-							+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
+							+'<span id="com-modal-button">'
+								+'<a href="javascript:void(0)"　id="modal-open" style="text-decoration:none;" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
+							+'</span>'
 							+'</div>'
 						+'</section>';
 						//console.log(i);
 					}
-					// if(json_length != 0){
-					// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-					// }
-					//console.log(view);
 					$("#photo-area").append(view);
 				}
 			)
 		})
+
 		function moreContent(){
 			view ="";
 			$.ajax({
-				url:"./PhotoListServlet?min_id="+min_id, //初回パラメータなし
-				type: 'post',
+				url:"./PhotoListServlet?min_id="+min_id,
+				type: 'get',
 				datatype: 'json',
 				async: 'false',
 			}).then(
@@ -170,7 +142,7 @@
 						var json_com_len = jsonObject['photo'][i]['comments'].length;
 						view += '<section class="photo-view">'
 							+'<div class="main-img">'
-								+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
+								+'<img class="preview-img" src='+jsonObject['photo'][i]['path']+' alt="img">'
 							+'</div>'
 							+'<ul class="user-info">'
 								+'<li class="com-user">User:'+jsonObject['photo'][i]['user']+'</li>'
@@ -207,20 +179,23 @@
 							}
 						}
 						view += '</ul>'
-								+'<a id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する　<i class="fa fa-pencil" aria-hidden="true"></i></a>'
+								+'<a href="javascript:void(0)" id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
 							+'</div>'
 						+'</section>';
 					}
-					// if(json_length != 0){
-					// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-					// }
 					$("#photo-area").append(view);
 				}
 			)
 		}
 
+		$(function(){
+			if(min_id != 1 && min_id != 0){
+				$('.more-button-area').html('<a href="javascript:void(0)" id="more-button" onclick="moreContent(); moreContentReload();">さらに表示</a>');
+			}else{
+				$('#more-button').remove();
+			}
+		})
 	</script>
-
 
 	<script>
 		$(function(){
@@ -251,40 +226,40 @@
 	<div id="wrapper-main">
 
 		<div id="comment-modal">
-			<form action="./PhotoCommenServlet" method="post" id="com-form">
+			<form action="./PhotoCommentServlet" method="post" id="com-form">
 				<p id="dest-user"></p>
-				<span>コメント</span> <br>
-				<textarea name="p_comment" id="" cols="30" rows="10" class="com-modal-mes"></textarea><br>
-				<button name="button" type="submit">投稿確認</button>
-			</form><br>
-			<a id="modal-close">close</a>
+				<hr>
+				<textarea name="p_comment" cols="30" rows="10" id="com-modal-mes"></textarea><br>
+				<button name="button" type="submit" class="submit-btn">投稿確認</button>
+				<div class="flex-cnt">
+					<a href="javascript:void(0)" id="modal-close">close</a>
+				</div>
+			</form>
 		</div>
 		<!-- ヘッダー -->
 
 		<header>
 			<div id="logo">
-				<img src="images/logo.png" />
-			</div>
-			<div id="logout">
-				<a href="./Logout"><img src="images/logout_button.png"></a>
+				<img src="images/header_logo.png" />
 			</div>
 		</header>
 		<article id="photo-area">
 
 		</article>
-		<div class="more-button-area"><a href="#" id="more-button" onclick="moreContent(); moreContentReload();">さらに表示</a></div>
+		<div class="more-button-area">
+		</div>
 		<!-- フッター -->
 		<footer>
 			<ul>
-				<li class="camera_nav"><a><img
-						src="images/photo_current_button.png" /></a></li>
-				<li class="collage_nav"><a href="./StampServlet"><img
+				<li class="camera_nav"><a href="sharePhotos.jsp"><img
+						src="images/photo_button.png" /></a></li>
+				<li class="collage_nav"><a href="stampRally.jsp"><img
 						src="images/stamp_button.png" /></a></li>
-				<li class="add_nav"><a href="photoUpload.jsp"><img
+				<li class="add_nav"><a href="#"><img
 						src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="./RankingServlet"><img
-						src="images/rank_button.png" /></a></li>
-				<li class="user_nav"><a href="./UserServlet"><img
+				<li class="information_nav"><a href="#"><img
+						src="images/infomation_button.png" /></a></li>
+				<li class="user_nav"><a href="user.jsp"><img
 						src="images/profile_button.png" /></a></li>
 			</ul>
 		</footer>
