@@ -31,6 +31,7 @@ function openModal(data) {
 	HTML += '<li><a class="goodButton goodPhotoID_'+data.photo_id+'" href="javascript:sendGood('+data.photo_id+');"><img src="./images/icon/heart_'+data.user_good+'.png"> <span>'+data.good_cnt+'</span></a></li>';
 	HTML += '<li><img src="./images/icon/comment.png"> '+data.com_cnt+'件</li>';
 	HTML += '</ul>';
+	setUserGood(data.photo_id,data.user_good);
 	//--comment--
 	HTML += '<div id="photoComments">';
 	HTML += '<ul>';

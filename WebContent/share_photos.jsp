@@ -70,7 +70,7 @@
 					$.ajaxSetup({async:true});
 					var json_length = jsonObject['photo'].length;
 					for(var i=0;i<json_length;i++){
-						setUserGood();
+						setUserGood(jsonObject['photo'][i]['photo_id'],jsonObject['photo'][i]['user_good']);
 						var json_com_len = jsonObject['photo'][i]['comments'].length;
 						console.log(i+':loop_main');
 						view += '<section class="photo-view">'
@@ -240,7 +240,10 @@
 
 		<header>
 			<div id="logo">
-				<img src="images/header_logo.png" />
+				<img src="images/logo.png" />
+			</div>
+			<div id="logout">
+				<a href="./Logout"><img src="images/logout_button.png"></a>
 			</div>
 		</header>
 		<article id="photo-area">
@@ -251,15 +254,15 @@
 		<!-- フッター -->
 		<footer>
 			<ul>
-				<li class="camera_nav"><a href="sharePhotos.jsp"><img
-						src="images/photo_button.png" /></a></li>
-				<li class="collage_nav"><a href="stampRally.jsp"><img
+				<li class="camera_nav"><a><img
+						src="images/photo_current_button.png" /></a></li>
+				<li class="collage_nav"><a href="./StampServlet"><img
 						src="images/stamp_button.png" /></a></li>
-				<li class="add_nav"><a href="#"><img
+				<li class="add_nav"><a href="photoUpload.jsp"><img
 						src="images/add_button.png" /></a></li>
-				<li class="information_nav"><a href="#"><img
-						src="images/infomation_button.png" /></a></li>
-				<li class="user_nav"><a href="user.jsp"><img
+				<li class="information_nav"><a href="./RankingServlet"><img
+						src="images/rank_button.png" /></a></li>
+				<li class="user_nav"><a href="./UserServlet"><img
 						src="images/profile_button.png" /></a></li>
 			</ul>
 		</footer>

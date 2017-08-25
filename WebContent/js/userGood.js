@@ -11,8 +11,12 @@ function setUserGood(photo_id, userGood) {
 // goodを送信
 function sendGood(photo_id) {
 	var tmpSignal;
-	userGoods[photo_id] = !userGoods[photo_id];
-	if(userGoods[photo_id]) {
+	if(userGoods[photo_id] === "true") {
+		userGoods[photo_id] = "false";
+	} else {
+		userGoods[photo_id] = "true";
+	}
+	if(userGoods[photo_id] === "true") {
 		tmpSignal = 'good';
 	} else {
 		tmpSignal = 'cancel';
@@ -22,7 +26,7 @@ function sendGood(photo_id) {
 		type: 'GET'
 	}).then(function() {
 		var tmpGoodNum = $('a.goodPhotoID_'+photo_id).find('span').text();
-		if(userGoods[photo_id]) {
+		if(userGoods[photo_id] === "true") {
 			tmpGoodNum++;
 		} else {
 			tmpGoodNum--;

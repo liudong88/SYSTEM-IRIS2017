@@ -2,6 +2,7 @@
 
 
 #wrapper-main #photo-area{
+    margin-top: 1.5em;
     width: 100vw;
     background: #ffffb7;
     font-size: 1em;
@@ -13,7 +14,7 @@
 
 #wrapper-main #photo-area .photo-view{
     margin-top:1em;
-    background: #ffffb7;;
+    background: #ffffb7;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -106,17 +107,24 @@ div#details ul#com-preview li.com-inner{
 	height: 24px;
 }
 
-a#modal-open{
-    font-size:0.8em;
+#com-modal-button{
     display: block;
     text-align: right;
     padding: 1em;
+}
 
+#com-modal-button #modal-open{
+    display: inline;
+    font-size:0.8em;
 }
 
 .more{
+    width:60vw;
+    margin: 0 auto;
+    padding:0.5em;
     text-align: center;
-    text-decoration: underline;
+    border: 1px solid black;
+    border-radius: 14px;
 }
 
 .more-button-area{
@@ -128,7 +136,14 @@ a#modal-open{
 
 .more-button-area #more-button{
     display: inline;
+    border: 1px solid black;
+    background-color: white;
+    padding: 0.5em;
+    text-decoration: none;
+    color:black;
+    border-radius: 10px;
 }
 
-
-
+footer{
+    margin-top:1em;
+}
