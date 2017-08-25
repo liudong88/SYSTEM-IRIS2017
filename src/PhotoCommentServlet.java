@@ -50,6 +50,9 @@ public class PhotoCommentServlet extends HttpServlet {
 			String strPhotoId = request.getParameter("photo_id");
 			String strComment = request.getParameter("p_comment");
 
+			System.out.println("1"+strPhotoId);
+			System.out.println("2"+strComment);
+
 			DatabaseAccess dba = new DatabaseAccess();
 
 			String sql = "INSERT INTO photo_comments("
