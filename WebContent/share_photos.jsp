@@ -24,37 +24,9 @@
 	<title>投稿写真一覧</title>
 
 	<script>
-		$(document).on("submit","#com-form",function(evt){
-			evt.preventDefault();
-			console.log('confirm');
-
-			if(window.confirm('コメントを投稿しますか?')){
-				$.ajax({
-					url:$('#com-form').attr('action'),
-					type:$('#com-form').attr('method'),
-				}).then(
-					function(){
-						console.log('success');
-						alert('投稿が完了しました!');
-						console.log('delete');
-						$("#comment-modal,#modal-overlay").fadeOut("slow",function(){
-						//フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
-							$("#modal-overlay").remove();
-							$("#id_input").remove();
-						});
-					},
-					function(){
-						console.log('failed');
-					}
-				)
-			}
-		})
-	</script>
-
-	<script>
 		var view ="";
 		var min_id ="";
-
+		
 		$(function(){
 			view = "";
 			$.ajax({
@@ -70,7 +42,7 @@
 					$.ajaxSetup({async:true});
 					var json_length = jsonObject['photo'].length;
 					for(var i=0;i<json_length;i++){
-						setUserGood(jsonObject['photo'][i]['photo_id'],jsonObject['photo'][i]['user_good']);
+						setUserGood();
 						var json_com_len = jsonObject['photo'][i]['comments'].length;
 						console.log(i+':loop_main');
 						view += '<section class="photo-view">'
@@ -85,7 +57,7 @@
 							+'<div id="details">'
 								+'<span style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
 								+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
-								+'<ul id="com-preview">';
+								+'<ul id="com-preview" id="photo_id_'+jsonObject['photo'][i]['photo_id']+'">';
 						for(var j=0;j<json_com_len;j++){
 							//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
 							var now_loop = j+1;
@@ -95,8 +67,8 @@
 									view += '<ul>'
 										view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
 										view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
-									view += '</ul>'
+										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
+									view += '</ul>' 
 								view += '</li>';
 								//console.log('in loop2:'+[j]);
 								if(j != (json_com_len-1)){
@@ -107,13 +79,13 @@
 								view += '<ul class="com-inner">';
 									view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
 									view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
+									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
 								view += '</ul>';
 							}
 						}
 						view += '</ul>'
 							+'<span id="com-modal-button">'
-								+'<a href="javascript:void(0)" id="modal-open" onclick="openModal('+jsonObject['photo'][i]['photo_id']+');">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
+								+'<a href="javascript:void(0)"　id="modal-open" style="text-decoration:none;" onclick="openModal(&quot;'+jsonObject['photo'][i]['photo_id']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
 							+'</span>'
 							+'</div>'
 						+'</section>';
@@ -123,7 +95,7 @@
 				}
 			)
 		})
-
+		
 		function moreContent(){
 			view ="";
 			$.ajax({
@@ -162,8 +134,8 @@
 									view += '<ul class="com-inner">'
 										view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
 										view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
-									view += '</ul>'
+										view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
+									view += '</ul>' 
 								view += '</li>';
 								//console.log('in loop2:'+[j]);
 								if(j != (json_com_len-1)){
@@ -174,13 +146,12 @@
 								view += '<ul class="com-inner">';
 									view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
 									view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';
+									view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
 								view += '</ul>';
 							}
-						}
+						}		
 						view += '</ul>'
-								+'<a href="javascript:void(0)" id="modal-open" onclick="openModal('+jsonObject['photo'][i]['user']+','+jsonObject['photo'][i]['photo_id']+');">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
-							+'</div>'
+							+'<a href="javascript:void(0)"　id="modal-open" style="text-decoration:none;" onclick="openModal(&quot;'+jsonObject['photo'][i]['photo_id']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'							+'</div>'
 						+'</section>';
 					}
 					$("#photo-area").append(view);
@@ -204,7 +175,7 @@
 				$('.more').on('click', function() {
 				$(this).css('display','none');//押したボタンを非表示
 				$(this).next('.content').slideDown('fast');
-				$(this).nextAll('.more:first').css('display','block'); //次のボタンを表示
+				$(this).nextAll('.more:first').css('display','block'); //次のボタンを表示	
 			});
 		});
 	</script>
@@ -223,21 +194,19 @@
 
 </head>
 <body>
-	<div id="wrapper-main">
-
+	<div id="wrapper-main">	
 		<div id="comment-modal">
 			<form action="./PhotoCommentServlet" method="post" id="com-form">
 				<p id="dest-user"></p>
 				<hr>
 				<textarea name="p_comment" cols="30" rows="10" id="com-modal-mes"></textarea><br>
-				<button name="button" type="submit" class="submit-btn">投稿確認</button>
+				<button name="button" type="submit"　class="submit-btn">投稿確認</button>
 				<div class="flex-cnt">
 					<a href="javascript:void(0)" id="modal-close">close</a>
 				</div>
 			</form>
 		</div>
 		<!-- ヘッダー -->
-
 		<header>
 			<div id="logo">
 				<img src="images/logo.png" />
