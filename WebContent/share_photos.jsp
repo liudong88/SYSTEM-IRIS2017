@@ -21,12 +21,7 @@
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/comment-modal.js"></script>
 	<script src="js/userGood.js"></script>
-	<title></title>
-
-	<script>
-		//jQuery動作確認
-		//$(function(){console.log('jq_activate')})
-	</script>
+	<title>投稿写真一覧</title>
 
 	<script>	
 		$(document).on("submit","#com-form",function(evt){
@@ -56,126 +51,9 @@
 		})
 	</script>
 
-
-
 	<script>
 		var view ="";
 		var min_id ="";
-		//var jsonObject = {
-		// 	"photo":[
-		// 		{
-		// 			"photo_id":"4",
-		// 			"path":"1_20170819193036312.png",
-		// 			"latitude":"35.111111",
-		// 			"longitude":"135.222222",
-		// 			"user":"ben",
-		// 			"time":"2017-08-19 19:30:36.0",
-		// 			"explanation":"Testttt",
-		// 			"good_cnt":"0",
-		// 			"com_cnt":"0",
-		// 			"user_good":"false",
-		// 			"comments":[]
-		// 		},
-		// 		{
-		// 			"photo_id":"3",
-		// 			"path":"1_20170819193002156.jpeg",
-		// 			"latitude":"35.111111",
-		// 			"longitude":"135.222222",
-		// 			"user":"タロウ",
-		// 			"time":"2017-08-19 19:30:02.0",
-		// 			"explanation":"Testttt",
-		// 			"good_cnt":"1",
-		// 			"com_cnt":"2",
-		// 			"user_good":"false",
-		// 			"comments":[
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 01:35:11.0",
-		// 					"comment":"コメントコメント"
-		// 				},
-		// 				{
-		// 					"com_name":"タロウ",
-		// 					"com_time":"2017-08-21 01:28:17.0",
-		// 					"comment":"コメントコメントコメント"
-		// 				}
-		// 			]
-		// 		},
-		// 		{
-		// 			"photo_id":"2",
-		// 			"path":"1_20170819192517678.png",
-		// 			"latitude":"35.111111",
-		// 			"longitude":"135.222222",
-		// 			"user": "daniel",
-		// 			"time":"2017-08-19 19:25:18.0",
-		// 			"explanation":"Testttt",
-		// 			"good_cnt":"0",
-		// 			"com_cnt":"1",
-		// 			"user_good":"false",
-		// 			"comments":[
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:20.0",
-		// 					"comment":"コメント"
-		// 				},
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				},
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				}
-		// 			]
-		// 		},
-		// 		{
-		// 			"photo_id":"1",
-		// 			"path":"15029397690141063822137.jpg",
-		// 			"latitude":"35.111111",
-		// 			"longitude":"135.222222",
-		// 			"user":"タロウ",
-		// 			"time":"2017-08-17 12:38:57.0",
-		// 			"explanation":"Testttt",
-		// 			"good_cnt":"0",
-		// 			"com_cnt":"1",
-		// 			"user_good":"false",
-		// 			"comments":[
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				},
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				},
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				},
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				},
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				},
-		// 				{
-		// 					"com_name":"ハナコ",
-		// 					"com_time":"2017-08-21 02:30:30.0",
-		// 					"comment":"コメント"
-		// 				}
-		// 			]
-		// 		}
-		// 	],
-		// 	"min_id":"1"
-		// }
 		
 		$(function(){
 			view = "";
@@ -197,7 +75,7 @@
 						console.log(i+':loop_main');
 						view += '<section class="photo-view">'
 							+'<div class="main-img">'
-								+'<img class="preview-img" src='+jsonObject['photo'][i]['path']+' alt="dummy">'
+								+'<img class="preview-img" src='+jsonObject['photo'][i]['path']+' alt="image">'
 							+'</div>'
 							+'<ul class="user-info">'
 								+'<li class="com-user">'+jsonObject['photo'][i]['user']+'</li>'
@@ -241,70 +119,9 @@
 						+'</section>';
 						//console.log(i);
 					}
-					if(json_length != 0){
-						view+='<a href="href="javascript:void(0)"" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-					}
-					//console.log(view);
 					$("#photo-area").append(view);
 				}
 			)
-
-			// var json_length = jsonObject['photo'].length;
-			// for(var i=0;i<json_length;i++){
-			// 	setUserGood();
-			// 	var json_com_len = jsonObject['photo'][i]['comments'].length;
-			// 	console.log(i+':loop_main');
-			// 	view += '<section class="photo-view">'
-			// 		+'<div class="main-img">'
-			// 			+'<img class="preview-img" src="images/dummy_images.jpg" alt="dummy">'
-			// 		+'</div>'
-			// 		+'<ul class="user-info">'
-			// 			+'<li class="com-user">'+jsonObject['photo'][i]['user']+'</li>'
-			// 			+'<li class="com-main">'+jsonObject['photo'][i]['explanation']+'</li>'
-			// 			+'<li class="com-date">'+jsonObject['photo'][i]['time']+'</li>'
-			// 		+'</ul>'
-			// 		+'<div id="details">'
-			// 			+'<span style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
-			// 			+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
-			// 			+'<ul id="com-preview">';
-			// 	for(var j=0;j<json_com_len;j++){
-			// 		//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
-			// 		var now_loop = j+1;
-			// 		if((now_loop%2)==0){
-			// 			//console.log('in:'+[j]);
-			// 			view += '<li class="com-inner">';
-			// 				view += '<ul>'
-			// 					view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
-			// 					view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-			// 					view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
-			// 				view += '</ul>' 
-			// 			view += '</li>';
-			// 			//console.log('in loop2:'+[j]);
-			// 			if(j != (json_com_len-1)){
-			// 				view += '</ul><div class="more">もっと見る</div>';
-			// 			}
-			// 		}else{
-			// 			view += '<ul class="content">';
-			// 			view += '<ul class="com-inner">';
-			// 				view += '<li class="com-user">'+jsonObject['photo'][i]['comments'][j]['com_name']+'</li>';
-			// 				view += '<li class="com-main">'+jsonObject['photo'][i]['comments'][j]['comment']+'</li>';
-			// 				view += '<li class="com-date">'+jsonObject['photo'][i]['comments'][j]['com_time']+'</li>';			
-			// 			view += '</ul>';
-			// 		}
-			// 	}
-			// 	view += '</ul>'
-			// 		+'<span id="com-modal-button">'
-			// 			+'<a href="javascript:void(0)"　id="modal-open" style="text-decoration:none;" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
-			// 		+'</span>'
-			// 		+'</div>'
-			// 	+'</section>';
-			// 	//console.log(i);
-			// }
-			// if(json_length != 0){
-			// 	view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
-			// }
-			// console.log(view);
-			// $("#photo-area").append(view);
 		})
 		
 		function moreContent(){
@@ -365,9 +182,6 @@
 								+'<a href="javascript:void(0)" id="modal-open" onclick="openModal(&quot;'+jsonObject['photo'][i]['user']+'&quot;);">コメントを追加する<i class="fa fa-pencil" aria-hidden="true"></i></a>'
 							+'</div>'
 						+'</section>';
-					}
-					if(json_length != 0){
-						view+='<a href="#" id="more-button" onclick="moreContent(); moreContentReload();">More...</a>';
 					}
 					$("#photo-area").append(view);
 				}
