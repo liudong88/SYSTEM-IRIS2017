@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	//ユーザー名を取得
-	String user_name = (String)request.getAttribute("");
+	String user_name = (String)request.getAttribute("USER");
 %>
 <html lang="ja">
 <head>
@@ -22,39 +22,9 @@
 	<script src="js/comment-modal.js"></script>
 	<script src="js/userGood.js"></script>
 	<title>投稿写真一覧</title>
-
-	<script>
-		$(document).on("submit","#com-form",function(evt){
-			evt.preventDefault();
-			console.log('confirm');
-
-			if(window.confirm('コメントを投稿しますか?')){
-				$.ajax({
-					url:$('#com-form').attr('action'),
-					type:$('#com-form').attr('method'),
-				}).then(
-					function(){
-						console.log('success');
-						alert('投稿が完了しました!');
-						console.log('delete');
-						$("#comment-modal,#modal-overlay").fadeOut("slow",function(){
-						//フェードアウト後、[#modal-overlay]をHTML(DOM)上から削除
-							$("#modal-overlay").remove();
-							$("#id_input").remove();
-						});
-					},
-					function(){
-						console.log('failed');
-					}
-				)
-			}
-		})
-	</script>
-
 	<script>
 		var view ="";
 		var min_id ="";
-
 		$(function(){
 			view = "";
 			$.ajax({
@@ -85,7 +55,7 @@
 							+'<div id="details">'
 								+'<span style="margin-left:8%;"><a class="goodButton goodPhotoID_'+jsonObject['photo'][i]['photo_id']+'" href="javascript:sendGood('+jsonObject['photo'][i]['photo_id']+');"><img src="./images/icon/heart_'+jsonObject['photo'][i]['user_good']+'.png"> <span>'+jsonObject['photo'][i]['good_cnt']+'</span></a></span>'
 								+'<span class="likeButton"><img src="images/icon/comment.png"> '+jsonObject['photo'][i]['com_cnt']+'</span><br>'
-								+'<ul id="com-preview">';
+								+'<ul id="com-preview" id="photo_id_'+jsonObject['photo'][i]['photo_id']+'">';
 						for(var j=0;j<json_com_len;j++){
 							//console.log(jsonObject['photo'][i]['comments'][j]+"com_obj");
 							var now_loop = j+1;
@@ -123,7 +93,6 @@
 				}
 			)
 		})
-
 		function moreContent(){
 			view ="";
 			$.ajax({

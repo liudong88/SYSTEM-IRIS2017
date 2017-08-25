@@ -3,10 +3,13 @@
 #comment-modal{
     z-index: 2;
     width: 100%;
-    margin: auto;
-    background: white;
-    display: none;
+    height:54vh;
     position: fixed;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+    background: #ffffb7;
+    display: none;
 }
 
 #modal-overlay{
@@ -20,16 +23,48 @@
     background-color:rgba(0,0,0,0.75);
 }
 
-.com-modal-user{
-    width: 70%;
+#dest-user{
     margin: 1em auto;
-    border: 0;
-    border-bottom: 1px solid black;
-    border-width: 100%;
+    text-align: center;
+    font-size: 1em;
 }
 
-.com-modal-mes{
+#com-modal-mes{
+    display: block;
     width:80%;
-    margin: 1em auto;
+    margin: 1.5em auto;
     border: 1px solid black;
+}
+
+button{
+    margin: 0 auto;
+    display: block;
+    padding: 0.6em 1.6em;
+    border: solid 1px black;
+    background-color: white;    
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+button.close-btn{
+    padding:0;
+    border: solid 1px black;
+    background-color: white;    
+    font-size: 1em;
+}
+
+
+.flex-cnt{
+    margin-top:1em;
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-cnt #modal-close{
+    font-size: 1em;
+    text-decoration: none;
+    text-decoration: underline;
+    color: black;
 }
